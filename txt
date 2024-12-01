@@ -1,0 +1,15 @@
+publication blog
+inscription formation
+enregistrement avec numere d'ordre
+demande numero d'ordre
+
+role : admin, infirmier, user
+
+zone de sante - air de sante - structure de sante
+
+filtre de recherche :
+
+abonnement (auto) infirmier, selon niveau etude
+
+!! login, recherche, abonnement
+
