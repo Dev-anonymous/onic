@@ -29,21 +29,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::resource('dash', DashAPIController::class)->only(['index']);
-    Route::resource('config', ConfigAPIController::class)->only(['store']);
-    Route::resource('faculte', FacultAPIController::class);
-    Route::resource('category', CategoryAPIController::class)->only(['index', 'store', 'destroy']);
-    Route::post('category/{category}', [CategoryAPIController::class, 'update']);
-    Route::resource('product', ProductAPIController::class)->only(['index', 'store', 'destroy']);
-    Route::post('product/{product}', [ProductAPIController::class, 'update']);
-    Route::resource('project', ProjectAPIController::class)->only(['index', 'store', 'destroy']);
-    Route::post('project/{project}', [ProjectAPIController::class, 'update']);
-    Route::resource('task', TaskAPIController::class);
-    Route::resource('cart', CartAPIController::class)->only(['index', 'store', 'destroy']);
+    // Route::resource('config', ConfigAPIController::class)->only(['store']);
 
     Route::post('fpi', [AppController::class, 'fpi'])->name('fpi');
     Route::get('fpc', [AppController::class, 'fpc'])->name('fpc');
 });
 
+Route::get('pub/airesante', [AireSanteAPIController::class, 'index2'])->name('pub.area');
+Route::get('pub/structuresante', [StructureSanteAPIController::class, 'index2'])->name('pub.structure');
 
-
-Route::get('products', [ProductAPIController::class, 'products'])->name('productlist');
+// Route::get('products', [ProductAPIController::class, 'products'])->name('productlist');

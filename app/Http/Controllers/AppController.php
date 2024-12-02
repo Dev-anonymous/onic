@@ -8,6 +8,7 @@ use App\Models\Invoice;
 use App\Models\Pay;
 use App\Models\Pending;
 use App\Models\Product;
+use App\Models\Profil;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,8 +22,13 @@ class AppController extends Controller
 {
     function login()
     {
-        $data['email'] = request('email');
+        $login = request('login');
         $data['password'] = request('pass');
+        if (is_numeric($login)) {
+            $data['phone'] = "0" . (int) $login;
+        } else {
+            $data['email'] = $login;
+        }
 
         if (Auth::attempt($data, request()->has('remember'))) {
             $user = auth()->user();
@@ -182,12 +188,35 @@ class AppController extends Controller
 
     function newu()
     {
-        $rules =  [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required',
-            'phone' => 'required|max:10,min:10',
-        ];
+        $role = request('role');
+        $affilie = request('affilie');
+        abort_if(!in_array($role, ['user', 'nurse']), 403, "Invalide role : $role");
+        abort_if(!in_array($affilie, ['OUI', 'NON']), 403);
+
+        if ('nurse' == $role) {
+            $rules =  [
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+                'password' => 'required',
+                'phone' => 'required|max:10,min:10|unique:users,phone',
+                'genre' => 'required|in:M,F',
+                'niveauetude' => 'required|in:' . implode(',', getlevel()),
+                'numeroordre' => 'required|string|max:200',
+                'adresse' => 'required|string|max:200',
+                'file' => 'required|mimes:pdf|max:1200',
+            ];
+            if ('OUI' == $affilie) {
+                $rules['structure_id'] = 'required|exists:structuresante,id';
+            }
+        } else if ('user' == $role) {
+            $rules =  [
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+                'password' => 'required',
+                'phone' => 'required|max:10,min:10|unique:users,phone',
+
+            ];
+        }
 
         $validator = Validator::make(request()->all(), $rules);
 
@@ -207,10 +236,17 @@ class AppController extends Controller
 
         $data['password'] = Hash::make($data['password']);
         $data['name'] = ucfirst($data['name']);
-        $data['user_role'] =  'user';
-        $user = User::create($data);
-        Auth::login($user, true);
+        $data['user_role'] =  $role;
 
+        DB::transaction(function () use ($data) {
+            $user = User::create($data);
+            $data['users_id'] = $user->id;
+            $data['fichier'] = request('file')->store('driver', 'public');
+            Profil::create($data);
+            Auth::login($user, true);
+        });
+
+        $user = auth()->user();
         return [
             'success' => true,
             'message' => 'Votre compte a été créé. Bienvenue.',

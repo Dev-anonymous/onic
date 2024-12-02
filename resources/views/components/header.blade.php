@@ -41,13 +41,10 @@
                         $dah = route('admin.home');
                     }
                     if ($user->user_role == 'nurse') {
-                        $href = route('user.profile');
-                        $dah = route('user.projects');
+                        $href = route('nurse.profile');
+                        $dah = route('nurse.home');
                     }
-                    if ($user->user_role == 'user') {
-                        $href = route('user.profile');
-                        $dah = route('user.order');
-                    }
+
                 @endphp
             @endauth
             @if (!Route::is('home'))

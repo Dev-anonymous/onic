@@ -41,7 +41,7 @@ class UserAPIController extends Controller
                     $pro['niveauetude'] = $profil->niveauetude;
                     $pro['numeroordre'] = $profil->numeroordre;
                     $pro['adresse'] = $profil->adresse;
-                    $pro['structure'] = $profil->structuresante->structure;
+                    $pro['structure'] = $profil->structuresante?->structure ?? '';
                 }
                 $o->profil = (object)$pro;
 

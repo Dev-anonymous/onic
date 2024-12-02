@@ -16,7 +16,6 @@ use Laravel\Sanctum\HasApiTokens;
  * Class User
  *
  * @property int $id
- * @property int|null $filiere_has_promotion_id
  * @property int|null $users_id
  * @property string $name
  * @property string $email
@@ -28,14 +27,10 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $user_role
  * @property string|null $phone
  * @property string|null $image
+ * @property int|null $active
  *
- * @property FiliereHasPromotion|null $filiere_has_promotion
  * @property User|null $user
- * @property Collection|Cart[] $carts
- * @property Collection|Commande[] $commandes
  * @property Collection|Profil[] $profils
- * @property Collection|Project[] $projects
- * @property Collection|Task[] $tasks
  * @property Collection|User[] $users
  *
  * @package App\Models
@@ -47,9 +42,9 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $casts = [
-        'filiere_has_promotion_id' => 'int',
         'users_id' => 'int',
-        'email_verified_at' => 'datetime'
+        'email_verified_at' => 'datetime',
+        'active' => 'int'
     ];
 
     protected $hidden = [
@@ -58,7 +53,6 @@ class User extends Authenticatable
     ];
 
     protected $fillable = [
-        'filiere_has_promotion_id',
         'users_id',
         'name',
         'email',
@@ -67,42 +61,18 @@ class User extends Authenticatable
         'remember_token',
         'user_role',
         'phone',
-        'image'
+        'image',
+        'active'
     ];
-
-    public function filiere_has_promotion()
-    {
-        return $this->belongsTo(FiliereHasPromotion::class);
-    }
 
     public function user()
     {
         return $this->belongsTo(User::class, 'users_id');
     }
 
-    public function carts()
-    {
-        return $this->hasMany(Cart::class, 'users_id');
-    }
-
-    public function commandes()
-    {
-        return $this->hasMany(Commande::class, 'users_id');
-    }
-
     public function profils()
     {
         return $this->hasMany(Profil::class, 'users_id');
-    }
-
-    public function projects()
-    {
-        return $this->belongsToMany(Project::class, 'project_has_users', 'users_id');
-    }
-
-    public function tasks()
-    {
-        return $this->belongsToMany(Task::class, 'task_has_users', 'users_id');
     }
 
     public function users()

@@ -58,18 +58,9 @@ class AdminController extends Controller
 
     function nurse()
     {
-        $promotion = FiliereHasPromotion::with(['promotion' => function ($q) {
-            $q->orderBy('promotion');
-        }])->with(['filiere' => function ($q) {
-            $q->orderBy('filiere');
-        }])->get();
-        return view('admin.nurse', compact('promotion'));
+        return view('admin.nurse');
     }
 
-    function users()
-    {
-        return view('admin.user');
-    }
 
     function profile()
     {

@@ -7,6 +7,7 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\UserController;
 use App\Models\Category;
 use App\Models\Pay;
+use App\Models\Zonesante;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,13 +20,11 @@ Route::get('/login', function () {
         $url = '';
         if ($role == 'admin') {
             $url = route('admin.home');
-        } elseif ($role == 'user') {
+        } elseif ($role == 'nurse') {
             $url = route('home');
-        } elseif ($role == 'student') {
-            $url = route('student.home');
         } else {
             Auth::logout();
-            abort(403);
+            abort(403, "Invalide user role : $role");
         }
 
         $r = request('r');
@@ -34,7 +33,9 @@ Route::get('/login', function () {
         }
         return redirect($url);
     }
-    return view('login');
+
+    $zones = Zonesante::orderBy('zonesante')->get();
+    return view('login', compact('zones'));
 })->name('login');
 
 Route::post('auth/login', [AppController::class, 'login'])->name('auth-login');
@@ -51,17 +52,14 @@ Route::middleware('auth')->group(function () {
             Route::get('admins',  'admins')->name('admin.admins');
             Route::get('nurse',  'nurse')->name('admin.nurse');
             Route::get('profile',  'profile')->name('admin.profile');
-            Route::get('users',  'users')->name('admin.users');
             Route::get('blog',  'blog')->name('admin.blog');
         });
     });
 
-    Route::prefix('user')->group(function () {
+    Route::prefix('nurse')->group(function () {
         Route::controller(UserController::class)->group(function () {
-            Route::get('',  'home')->name('student.home');
-            Route::get('profile',  'profile')->name('user.profile');
-            Route::get('projects',  'projects')->name('user.projects');
-            Route::get('order',  'order')->name('user.order');
+            Route::get('',  'home')->name('nurse.home');
+            Route::get('profile',  'profile')->name('nurse.profile');
         });
     });
 });

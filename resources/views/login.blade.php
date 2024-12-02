@@ -35,20 +35,19 @@
                         <p class="mb-4 text-muted op-7 fw-normal text-center">{{ config('app.name') }}</p>
                         <div class="row gy-3">
                             <form action="#" id="flog">
-                                <div class="col-xl-12">
-                                    <label for="signin-username" class="form-label text-default">Email</label>
-                                    <input required type="text" name="email" class="form-control form-control-lg"
-                                        id="signin-username" placeholder="Email">
+                                <div class="col-xl-12 mb-3">
+                                    <label for="signin-username" class="form-label text-default">Email ou Tel.</label>
+                                    <input required type="text" name="login" class="form-control "
+                                        id="signin-username" placeholder="Email ou Tel. (099..)">
                                 </div>
-                                <div class="col-xl-12 mb-2">
+                                <div class="col-xl-12">
                                     <label for="signin-password" class="form-label text-default d-block">Mot de passe
                                         {{-- <a href="reset-password-basic.html" class="float-end text-danger">Forget password
                                         ?</a> --}}
                                     </label>
                                     <div class="input-group">
-                                        <input required type="password" name="pass"
-                                            class="form-control form-control-lg" id="signin-password"
-                                            placeholder="Mot de passe">
+                                        <input required type="password" name="pass" class="form-control "
+                                            id="signin-password" placeholder="Mot de passe">
                                         <button class="btn btn-light" type="button"
                                             onclick="createpassword('signin-password',this)" id="button-addon2"><i
                                                 class="ri-eye-line align-middle"></i></button>
@@ -88,72 +87,105 @@
                         <p class="mb-4 text-muted op-7 fw-normal text-center">{{ config('app.name') }}</p>
                         <div class="row gy-3">
                             <form action="#" id="flcmpt">
+                                <input type="hidden" name="role" value="nurse">
                                 <div class="col-xl-12 mb-3">
                                     <label for="signin-username" class="form-label text-default">Nom complet</label>
-                                    <input required type="text" name="name" class="form-control form-control-lg"
+                                    <input required type="text" name="name" class="form-control "
                                         id="signin-username" placeholder="Nom complet">
                                 </div>
-                                <div class="col-xl-12 mb-3">
-                                    <label class="form-label text-default">Genre</label>
-                                    <select name="genre" required id="" class="form-control">
-                                        <option value=""></option>
-                                        <option>M</option>
-                                        <option>F</option>
-                                    </select>
+                                <div class="row">
+                                    <div class="col-xl-6 mb-3">
+                                        <label class="form-label text-default">Téléphone</label>
+                                        <input required type="text" minlength="10" maxlength="10" name="phone"
+                                            class="form-control phone" placeholder="Téléphone, Ex: 099xxx">
+                                    </div>
+                                    <div class="col-xl-6 mb-3">
+                                        <label for="signin-username" class="form-label text-default">Email</label>
+                                        <input required type="email" name="email" class="form-control "
+                                            id="signin-username" placeholder="Email">
+                                    </div>
                                 </div>
-                                <div class="col-xl-12 mb-3">
-                                    <label for="signin-username" class="form-label text-default">Email</label>
-                                    <input required type="email" name="email"
-                                        class="form-control form-control-lg" id="signin-username"
-                                        placeholder="Email">
-                                </div>
-                                <div class="col-xl-12 mb-3">
-                                    <label class="form-label text-default">Téléphone</label>
-                                    <input required type="text" minlength="10" maxlength="10" name="phone"
-                                        class="form-control form-control-sm phone"
-                                        placeholder="Téléphone, Ex: 099xxx">
-                                </div>
-                                <div class="col-xl-12 mb-3">
-                                    <label class="form-label text-default">Niveau d'étude</label>
-                                    <select name="niveau" required id="" class="form-control">
-                                        <option value=""></option>
-                                        @foreach (getlevel() as $el)
-                                            <option value="{{ $el }}">{{ $el }}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="row">
+                                    <div class="col-xl-6 mb-3">
+                                        <label class="form-label text-default">Genre</label>
+                                        <select name="genre" required id="" class="form-control">
+                                            <option value=""></option>
+                                            <option>M</option>
+                                            <option>F</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-6 mb-3">
+                                        <label class="form-label text-default">Niveau d'étude</label>
+                                        <select name="niveauetude" required id="" class="form-control">
+                                            <option value=""></option>
+                                            @foreach (getlevel() as $el)
+                                                <option value="{{ $el }}">{{ $el }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-xl-12 mb-3">
                                     <label for="signin-username" class="form-label text-default">
                                         Numéro d'ordre</label>
-                                    <input required type="email" name="numeroordre"
-                                        class="form-control form-control-lg" id="signin-username"
+                                    <input required name="numeroordre" class="form-control " id="signin-username"
                                         placeholder="Numéro d'ordre">
                                 </div>
                                 <div class="col-xl-12 mb-3">
                                     <label for="signin-username" class="form-label text-default">
                                         Adresse physique
                                     </label>
-                                    <input required type="email" name="adresse"
-                                        class="form-control form-control-lg" id="signin-username"
+                                    <input required name="adresse" class="form-control " id="signin-username"
                                         placeholder="Adresse physique">
                                 </div>
                                 <div class="col-xl-12 mb-3">
                                     <label class="form-label text-default">Êtes-vous affilié à une structure de sante
                                         ?</label>
-                                    <select name="affilie" required id="" class="form-control">
+                                    <select name="affilie" required id="affilie" class="form-control">
                                         <option value=""></option>
                                         <option>NON</option>
                                         <option>OUI</option>
                                     </select>
+                                </div>
+                                <div id="divstr" style="display: none;">
+                                    <div class="col-xl-12 mb-3">
+                                        <label class="form-label text-default">
+                                            Dans quelle zone de santé se trouve votre structure ?
+                                        </label>
+                                        <select name="zone" required id="" class="form-control">
+                                            <option value=""></option>
+                                            @foreach ($zones as $el)
+                                                <option value="{{ $el->id }}">{{ $el->zonesante }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-12 mb-3" divaire>
+                                        <label class="form-label text-default">
+                                            Dans quelle aire de santé se trouve votre structure ?
+                                        </label>
+                                        <div class="w-100 text-center" aireldr style="display: none">
+                                            <i class="bx bx-spin bx-loader"></i>
+                                        </div>
+                                        <select name="aire" required id="" class="form-control">
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-12 mb-3" divstrid>
+                                        <label class="form-label text-default">
+                                            Quelle est votre structure de santé ?
+                                        </label>
+                                        <div class="w-100 text-center" strldr style="display: none">
+                                            <i class="bx bx-spin bx-loader"></i>
+                                        </div>
+                                        <select name="structure_id" required id="" class="form-control">
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-xl-12 mb-3">
                                     <label for="signin-password" class="form-label text-default d-block">Mot de passe
                                         de connexion
                                     </label>
                                     <div class="input-group mb-3">
-                                        <input required type="password" name="password"
-                                            class="form-control form-control-lg" id="signin-password"
-                                            placeholder="Mot de passe">
+                                        <input required type="password" name="password" class="form-control "
+                                            id="signin-password" placeholder="Mot de passe">
                                         <button class="btn btn-light" type="button"
                                             onclick="createpassword('signin-password',this)" id="button-addon2"><i
                                                 class="ri-eye-line align-middle"></i></button>
@@ -264,7 +296,6 @@
                 });
             });
 
-
             FilePond.registerPlugin(
                 FilePondPluginImagePreview
             );
@@ -274,8 +305,6 @@
             $('#flcmpt').submit(function() {
                 event.preventDefault();
 
-                return;
-
                 var form = $(this);
                 var rep = $('#rep', form);
                 rep.html('');
@@ -283,19 +312,26 @@
                 var btn = $(':submit', form);
                 btn.attr('disabled', true);
                 btn.find('span').removeClass().addClass('bx bx-spin bx-loader');
-                var d = form.serialize();
+                var d = new FormData(this);
+
+                let pondFiles = pond1.getFiles();
+                for (var i = 0; i < pondFiles.length; i++) {
+                    d.append('file', pondFiles[i].file);
+                }
 
                 $.ajax({
                     type: 'post',
                     url: '{{ route('auth-new') }}',
                     data: d,
+                    contentType: false,
+                    processData: false,
                     success: function(r) {
                         if (r.success) {
                             btn.hide();
                             rep.removeClass().addClass('text-success');
                             localStorage.setItem('_t', r.token);
                             setTimeout(() => {
-                                location.assign('{{ route('home') }}');
+                                location.reload();
                             }, 3000);
                         } else {
                             btn.attr('disabled', false);
@@ -309,7 +345,107 @@
                         alert("une erreur s'est produite");
                     }
                 });
-            })
+            });
+
+            var selectAff = $('#affilie');
+            var divstr = $('#divstr');
+            var selectZone = $('[name=zone]');
+            var selectAire = $('[name=aire]');
+            var selectStr = $('[name=structure_id]');
+
+
+            function toggleAff() {
+                var v = selectAff.val();
+                divstr.slideUp();
+                $('[divaire]').slideUp();
+                $('[divstrid]').slideUp();
+                if ('OUI' == v) {
+                    divstr.slideDown();
+                    selectZone.change();
+                    selectZone.attr('required', true);
+                    selectAire.attr('required', true);
+                    selectStr.attr('required', true);
+                } else {
+                    selectZone.attr('required', false);
+                    selectAire.attr('required', false);
+                    selectStr.attr('required', false);
+                }
+            }
+
+            selectZone.change(function() {
+                var v = this.value;
+                $('[divstrid]').slideUp();
+                if (v) {
+                    $('[divaire]').slideDown();
+                    getarea();
+                } else {
+                    $('[divaire]').slideUp();
+                }
+            });
+
+            selectAire.change(function() {
+                var v = this.value;
+                $('[divstrid]').slideDown();
+                getstr();
+            });
+
+            toggleAff();
+            selectAff.change(function() {
+                toggleAff();
+            });
+
+            function getarea() {
+                $('[aireldr]').fadeIn();
+                $.ajax({
+                    url: '{{ route('pub.area') }}',
+                    data: {
+                        'zonesante_id': selectZone.val()
+                    },
+                    success: function(data) {
+                        $('[aireldr]').fadeOut();
+                        var str = '';
+                        $(data.data).each(function(i, e) {
+                            str += `
+                            <option value="${e.id}">${e.airesante}</option>
+                            `;
+                        });
+                        selectAire.html(str);
+                        selectAire.change();
+                    },
+                    error: function() {
+                        setTimeout(() => {
+                            getarea();
+                        }, 2000);
+                    }
+                });
+            }
+
+            function getstr() {
+                $('[strldr]').fadeIn();
+                $.ajax({
+                    url: '{{ route('pub.structure') }}',
+                    data: {
+                        'airesante_id': selectAire.val()
+                    },
+                    success: function(data) {
+                        $('[strldr]').fadeOut();
+                        var str = '';
+                        $(data.data).each(function(i, e) {
+                            str += `
+                            <option value="${e.id}">${e.structure}</option>
+                            `;
+                        });
+                        selectStr.html(str);
+                    },
+                    error: function() {
+                        setTimeout(() => {
+                            getstr();
+                        }, 2000);
+                    }
+                });
+            }
+
+
         })
     </script>
 

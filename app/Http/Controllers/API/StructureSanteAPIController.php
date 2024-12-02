@@ -30,6 +30,16 @@ class StructureSanteAPIController extends Controller
         ];
     }
 
+    function index2()
+    {
+        $airesante_id = request('airesante_id');
+        $data = Structuresante::where(compact('airesante_id'))->orderBy('structure')->get();
+        return [
+            'success' => true,
+            'data' => $data
+        ];
+    }
+
     /**
      * Store a newly created resource in storage.
      *

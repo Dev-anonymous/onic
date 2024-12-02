@@ -146,8 +146,8 @@
                                             <div id="cmptgraph"></div>
                                         </div>
                                         <div class="row row-cols-12 border-top border-block-start-dashed">
-                                            <div class="col p-0">
-                                                <a href="{{ route('admin.users') }}">
+                                            {{-- <div class="col p-0">
+                                                <a href="('admin.users') }}">
                                                     <div
                                                         class="ps-4 py-3 pe-3 text-center border-end border-inline-end-dashed">
                                                         <span
@@ -158,7 +158,7 @@
                                                         </div>
                                                     </div>
                                                 </a>
-                                            </div>
+                                            </div> --}}
                                             <div class="col p-0">
                                                 <a href="{{ route('admin.nurse') }}">
                                                     <div class="p-3 text-center border-end border-inline-end-dashed">
@@ -217,7 +217,7 @@
                         $('[structuresante]').html(data.structuresante);
                         $('[blog]').html(data.blog);
 
-                        var series = [data.nbclients, data.nbinfirmiers, data.nbadmins];
+                        var series = [data.nbinfirmiers, data.nbadmins];
 
                         cmptgraph.updateSeries(series);
 

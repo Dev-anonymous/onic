@@ -80,7 +80,7 @@
                     </li>
                     @php
                         $cl =
-                            (Route::is('admin.admins') or Route::is('admin.nurse') or Route::is('admin.users'))
+                            (Route::is('admin.admins') or Route::is('admin.nurse'))
                                 ? 'active open'
                                 : '';
                     @endphp
@@ -101,10 +101,6 @@
                             <li class="slide">
                                 <a href="{{ route('admin.nurse') }}"
                                     class="side-menu__item @if (Route::is('admin.nurse')) active @endif">Infirmiers</a>
-                            </li>
-                            <li class="slide">
-                                <a href="{{ route('admin.users') }}"
-                                    class="side-menu__item @if (Route::is('admin.users')) active @endif">Utilisateurs</a>
                             </li>
                         </ul>
                     </li>
@@ -148,6 +144,44 @@
                     </li>
                 @endif
                 @if ('nurse' == $role)
+                    @php
+                        $cl = Route::is('nurse.home') ? 'active open' : '';
+                    @endphp
+                    <li class="slide has-sub {{ $cl }}">
+                        <a href="javascript:void(0);" class="side-menu__item {{ $cl }}">
+                            <i class="bx bx-home side-menu__icon"></i>
+                            <span class="side-menu__label">Dashboard </span>
+                            <i class="fe fe-chevron-right side-menu__angle"></i>
+                        </a>
+                        <ul class="slide-menu child1">
+                            <li class="slide side-menu__label1">
+                                <a href="javascript:void(0)">Dashboard</a>
+                            </li>
+                            <li class="slide">
+                                <a href="{{ route('nurse.home') }}"
+                                    class="side-menu__item @if (Route::is('nurse.home')) active @endif">Dashboard</a>
+                            </li>
+                        </ul>
+                    </li>
+                    @php
+                        $cl = Route::is('nurse.profile') ? 'active open' : '';
+                    @endphp
+                    <li class="slide has-sub {{ $cl }}">
+                        <a href="javascript:void(0);" class="side-menu__item {{ $cl }}">
+                            <i class="bx bxs-cog side-menu__icon"></i>
+                            <span class="side-menu__label">Paramètres</span>
+                            <i class="fe fe-chevron-right side-menu__angle"></i>
+                        </a>
+                        <ul class="slide-menu child1">
+                            <li class="slide side-menu__label1">
+                                <a href="javascript:void(0)">Paramètres</a>
+                            </li>
+                            <li class="slide">
+                                <a href="{{ route('nurse.profile') }}"
+                                    class="side-menu__item @if (Route::is('nurse.profile')) active @endif">Profil</a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
             </ul>
             <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"

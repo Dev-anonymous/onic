@@ -30,6 +30,16 @@ class AireSanteAPIController extends Controller
         ];
     }
 
+    function index2()
+    {
+        $zonesante_id = request('zonesante_id');
+        $data = Airesante::where(compact('zonesante_id'))->orderBy('airesante')->get();
+        return [
+            'success' => true,
+            'data' => $data
+        ];
+    }
+
     /**
      * Store a newly created resource in storage.
      *
