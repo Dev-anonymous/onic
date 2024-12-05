@@ -176,9 +176,11 @@ function userimage($user)
 function getlevel()
 {
     return [
-        'D1',
-        'D3',
-        'D3',
+        'A0',
+        'A1',
+        'A3',
+        'A3',
+        'Doctorat',
     ];
 }
 

@@ -179,13 +179,15 @@
                         <div class="image-content">
                             <div class="section-title text-center">
                                 <h3>
-                                    Best Features
-                                    <span>of Our Hospital</span>
+                                    Consultez
+                                    <span>les meilleurs</span>
                                 </h3>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Ipsam magni in at debitis <br />
-                                    nam error officia vero tempora alias? Sunt?
+                                    Nous sommes déterminés à simplifier la recherche et la mise en relation des patients
+                                    avec des infirmiers qualifiés. <br> Notre objectif est de rendre le processus de
+                                    soins plus accessible et efficace. <br>La plateforme incontournable pour connecter
+                                    les
+                                    infirmiers et les patients
                                 </p>
                             </div>
                             <div class="row">
@@ -199,12 +201,12 @@
                                                 </a>
                                             </figure>
                                         </div>
-                                        <h6>Orthopedics</h6>
+                                        <h6>Accès rapide</h6>
                                         <p>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Nihil ducimus veniam illo quibusdam pariatur ex sunt,
-                                            est aspernatur at debitis eius vitae vel nostrum dolorem
-                                            labore autem corrupti odit mollitia?
+                                            aux infirmiers qualifiés.
+                                            Notre plateforme regroupe une vaste communauté d'infirmiers permanents,
+                                            permettant aux patients de trouver facilement le professionnel de santé le
+                                            plus adapté à leurs besoins.
                                         </p>
                                     </div>
                                 </div>
@@ -218,12 +220,14 @@
                                                 </a>
                                             </figure>
                                         </div>
-                                        <h6>Diaginostic</h6>
+                                        <h6>Recherche simplifiée</h6>
                                         <p>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Nihil ducimus veniam illo quibusdam pariatur ex sunt,
-                                            est aspernatur at debitis eius vitae vel nostrum dolorem
-                                            labore autem corrupti odit mollitia?
+                                            Utilisez notre fonction de recherche intuitive pour filtrer les infirmiers
+                                            par spécialité, localisation, et disponibilités, afin de trouver exactement
+                                            ce que vous recherchez.
+                                            La Plateforme de Regroupement des Infirmiers Permanents a pour but de
+                                            faciliter la mise en relation entre les infirmiers permanents et les
+                                            patients.
                                         </p>
                                     </div>
                                 </div>
@@ -237,12 +241,11 @@
                                                 </a>
                                             </figure>
                                         </div>
-                                        <h6>Psycology</h6>
+                                        <h6>Actualités du Secteur</h6>
                                         <p>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Nihil ducimus veniam illo quibusdam pariatur ex sunt,
-                                            est aspernatur at debitis eius vitae vel nostrum dolorem
-                                            labore autem corrupti odit mollitia?
+                                            Restez informé des dernières actualités et évolutions dans le monde de la
+                                            santé et des soins infirmiers grâce à notre section d'actualités
+                                            régulièrement mise à jour.
                                         </p>
                                     </div>
                                 </div>
@@ -256,12 +259,11 @@
                                                 </a>
                                             </figure>
                                         </div>
-                                        <h6>General Treatment</h6>
+                                        <h6>Disponibilité Flexibles</h6>
                                         <p>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Nihil ducimus veniam illo quibusdam pariatur ex sunt,
-                                            est aspernatur at debitis eius vitae vel nostrum dolorem
-                                            labore autem corrupti odit mollitia?
+                                            Les infirmiers peuvent gérer leurs horaires de
+                                            disponibilité en temps réel, permettant ainsi aux patients de choisir un
+                                            créneau qui leur convient.
                                         </p>
                                     </div>
                                 </div>
