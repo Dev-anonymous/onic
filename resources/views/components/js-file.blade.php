@@ -47,8 +47,9 @@
         }
     });
     $('[logout]').click(function() {
+        event.preventDefault();
         var rl = $(this);
-        rl.closest('li').html('<span class="bx bx-spin bx-loader"></span>');
+        rl.closest('li').html('<span class="bx bx-spin bx-loader ml-3 p-3"></span>');
         $.post('{{ route('auth-logout') }}', function() {
             location.reload();
         })

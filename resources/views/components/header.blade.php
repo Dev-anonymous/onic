@@ -44,57 +44,15 @@
                         $href = route('nurse.profile');
                         $dah = route('nurse.home');
                     }
-
                 @endphp
             @endauth
             @if (!Route::is('home'))
                 <div class="header-element">
                     <a href="{{ route('home') }}" class="header-link">
-                        <i class="bx bxs-home-smile header-link-icon"></i>
+                        <i class="bx bxs-home-smile header-link-icon"></i> Accueil
                     </a>
                 </div>
             @endif
-            @auth
-                @if (in_array($user->user_role, ['user', 'student']) && Route::is('home'))
-                    <div class="header-element cart-dropdown">
-                        <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-auto-close="outside"
-                            data-bs-toggle="dropdown">
-                            <i class="bx bx-cart header-link-icon"></i>
-                            <span class="badge bg-primary rounded-pill header-icon-badge" id="cart-icon-badge"
-                                npanier></span>
-                        </a>
-                        <div class="main-header-dropdown dropdown-menu dropdown-menu-end" data-popper-placement="none">
-                            <div class="p-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <p class="mb-0 fs-17 fw-semibold">Mon Panier</p>
-                                    <span class="badge bg-success-transparent" npanier></span>
-                                </div>
-                            </div>
-                            <div>
-                                <hr class="dropdown-divider">
-                            </div>
-                            <ul class="list-unstyled mb-0" id="header-cart-items-scroll"
-                                style="max-height: 300px; overflow: auto;">
-                            </ul>
-                            <div class="p-3 empty-header-item border-top" dvalide style="display: none">
-                                <div class="d-grid">
-                                    <button class="modal-effect btn btn-primary btn-sm btn-wave waves-effect waves-light"
-                                        data-bs-effect="effect-flip-vertical" data-bs-toggle="modal" href="#mpay">Payer
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="p-5 empty-item d-none">
-                                <div class="text-center">
-                                    <span class="avatar avatar-xl avatar-rounded bg-warning-transparent">
-                                        <i class="ri-shopping-cart-2-line fs-2"></i>
-                                    </span>
-                                    <h6 class="fw-bold mb-1 mt-3">Votre panier est vide</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-            @endauth
             <div class="header-element header-theme-mode">
                 <a href="javascript:void(0);" class="header-link layout-setting">
                     <span class="light-layout">
@@ -105,13 +63,6 @@
                     </span>
                 </a>
             </div>
-            <div class="header-element header-fullscreen">
-                <a onclick="openFullscreen();" href="javascript:void(0);" class="header-link">
-                    <i class="bx bx-fullscreen full-screen-open header-link-icon"></i>
-                    <i class="bx bx-exit-fullscreen full-screen-close header-link-icon d-none"></i>
-                </a>
-            </div>
-
             <div class="header-element">
                 @guest
                     <div class="d-flex align-items-center">

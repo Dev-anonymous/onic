@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $numeroordre
  * @property string|null $adresse
  * @property string|null $fichier
+ * @property string|null $etatcivil
+ * @property string|null $typestructure
  * 
  * @property Structuresante|null $structuresante
  * @property User $user
@@ -46,7 +48,9 @@ class Profil extends Model
 		'genre',
 		'numeroordre',
 		'adresse',
-		'fichier'
+		'fichier',
+		'etatcivil',
+		'typestructure'
 	];
 
 	public function structuresante()

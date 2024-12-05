@@ -63,7 +63,25 @@
     </div>
 
     <div id="responsive-overlay"></div>
-
+    <div class="modal fade" id="delmdl">
+        <div class="modal-dialog  text-center" role="document">
+            <div class="modal-content modal-content-demo">
+                <form action="#" id="fdel">
+                    <div class="modal-body text-start">
+                        <input type="hidden" name="id">
+                        <h3>Confirmer la suppression ?</h3>
+                        <div class="mt-2">
+                            <div id="rep"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-light btn-sm" data-bs-dismiss="modal" type="button">NON</button>
+                        <button class="btn btn-primary btn-sm" type="submit"><span></span> OUI</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <x-js-file />
     <x-datatable />
 
@@ -88,20 +106,27 @@
                             <td><img src="${user.image}" alt="img" width="32" height="32" class="rounded-circle"></td>
                             <td>${user.name}</i></td>
                             <td>
-                                Genre : ${user.profil?.genre} <br>
-                                Date de naisssance : ${user.profil?.datenaissance} <br>
-                                Age : ${user.profil?.age} <br>
+                                Niveau d'Etude : ${user.profil?.niveauetude??'-'} <br>
+                                Genre : ${user.profil?.genre??'-'} <br>
+                                Date de naisssance : ${user.profil?.datenaissance??'-'} <br>
+                                Age : ${user.profil?.age??'-'} <br>
+                                Etat Civil : ${user.profil?.etatcivil??'-'} <br>
+                                <a target='_blank' href="${user.profil?.fichier ??'-'}" class='btn p-0 btn-link' ><i class='bx bxs-file-pdf'></i> Fichier</a>
                             </td>
                             <td>
-                                Numéro d'ordre : ${user.profil?.numeroordre } <br>
-                                Tél : ${user.phone } <br>
-                                Email : ${user.email } <br>
-                                Adresse : ${user.profil?.adresse } <br>
+                                Numéro d'ordre : ${user.profil?.numeroordre ??'-'} <br>
+                                Tél : ${user.phone ??'-'} <br>
+                                Email : ${user.email ??'-'} <br>
+                                Adresse : ${user.profil?.adresse ??'-'} <br>
                             </td>
-                            <td>${user.profil.structure}</td>
-                            <td class='d-none'>
+                            <td>
+                                Structure : ${user.profil.structure??'-'}<br>
+                                Zone de sante : ${user.profil.zone??'-'}<br>
+                                Aire de sante : ${user.profil.aire??'-'}<br>
+                                </td>
+                            <td>
                                 <div class='d-flex justify-content-end'>
-                                    <button class="btn btn-primary btn-sm m-1" data="${escape(JSON.stringify(user))}"  value="${user.id}" bedit><i class='bx bx-edit'></i></button>
+                                    <button class="btn btn-primary btn-sm m-1" data="${escape(JSON.stringify(user))}"  value="${user.id}" bedit><i class='bx bx-dollar'></i></button>
                                     <button class="btn btn-outline-danger btn-sm m-1"  value="${user.id}" bdel ><i class='bx bx-trash'></i></button>
                                 </div>
                             </td>
@@ -110,6 +135,13 @@
                         });
 
                         table.find('tbody').html(html);
+                        $('[bdel]').off('click').click(function() {
+                            event.preventDefault();
+                            var v = this.value;
+                            var mdl = $('#delmdl')
+                            $('[name=id]', mdl).val(v);
+                            mdl.modal('show');
+                        });
 
                         table.DataTable({
                             order: [],
@@ -130,6 +162,43 @@
                 })
             }
             getdata();
+
+            $('#fdel').submit(function() {
+                event.preventDefault();
+                var form = $(this);
+                var rep = $('#rep', form);
+                rep.html('');
+
+                var btn = $(':submit', form);
+                btn.attr('disabled', true);
+                btn.find('span').removeClass().addClass('bx bx-spin bx-loader');
+                var id = $('[name=id]', form).val();
+
+                $.ajax({
+                    type: 'delete',
+                    url: '{{ route('users.destroy', '') }}/' + id,
+                    success: function(r) {
+                        if (r.success) {
+                            btn.attr('disabled', false);
+                            rep.removeClass().addClass('text-success');
+                            getdata();
+                            setTimeout(() => {
+                                $('.modal').modal('hide');
+                            }, 2000);
+                        } else {
+                            btn.attr('disabled', false);
+                            rep.removeClass().addClass('text-danger');
+                        }
+                        btn.find('span').removeClass();
+                        rep.html(r.message);
+                    },
+                    error: function(r) {
+                        btn.attr('disabled', false);
+                        btn.find('span').removeClass();
+                        alert("une erreur s'est produite");
+                    }
+                });
+            });
 
         });
     </script>

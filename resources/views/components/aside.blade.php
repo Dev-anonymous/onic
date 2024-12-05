@@ -79,10 +79,7 @@
                         </ul>
                     </li>
                     @php
-                        $cl =
-                            (Route::is('admin.admins') or Route::is('admin.nurse'))
-                                ? 'active open'
-                                : '';
+                        $cl = (Route::is('admin.admins') or Route::is('admin.nurse')) ? 'active open' : '';
                     @endphp
                     <li class="slide has-sub {{ $cl }}">
                         <a href="javascript:void(0);" class="side-menu__item {{ $cl }}">
@@ -124,7 +121,30 @@
                         </ul>
                     </li>
                     @php
-                        $cl = Route::is('admin.profile') ? 'active open' : '';
+                        $cl = Route::is('admin.contact') ? 'active open' : '';
+                    @endphp
+                    <li class="slide has-sub {{ $cl }}">
+                        <a href="javascript:void(0);" class="side-menu__item {{ $cl }}">
+                            <i class="bx bxs-flag-checkered side-menu__icon"></i>
+                            <span class="side-menu__label">Contact</span>
+                            <i class="fe fe-chevron-right side-menu__angle"></i>
+                        </a>
+                        <ul class="slide-menu child1">
+                            <li class="slide side-menu__label1">
+                                <a href="javascript:void(0)">Contact</a>
+                            </li>
+                            <li class="slide">
+                                <a href="{{ route('admin.contact') }}"
+                                    class="side-menu__item @if (Route::is('admin.contact')) active @endif">Contact &
+                                    Suggestion</a>
+                            </li>
+                        </ul>
+                    </li>
+                    @php
+                        $cl =
+                            (Route::is('admin.profile') or Route::is('admin.appconfig') or Route::is('admin.baniere'))
+                                ? 'active open'
+                                : '';
                     @endphp
                     <li class="slide has-sub {{ $cl }}">
                         <a href="javascript:void(0);" class="side-menu__item {{ $cl }}">
@@ -135,6 +155,14 @@
                         <ul class="slide-menu child1">
                             <li class="slide side-menu__label1">
                                 <a href="javascript:void(0)">Paramètres</a>
+                            </li>
+                            <li class="slide">
+                                <a href="{{ route('admin.appconfig') }}"
+                                    class="side-menu__item @if (Route::is('admin.appconfig')) active @endif">Configuration</a>
+                            </li>
+                            <li class="slide">
+                                <a href="{{ route('admin.baniere') }}"
+                                    class="side-menu__item @if (Route::is('admin.baniere')) active @endif">Bannière</a>
                             </li>
                             <li class="slide">
                                 <a href="{{ route('admin.profile') }}"

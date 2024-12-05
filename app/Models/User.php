@@ -30,7 +30,9 @@ use Laravel\Sanctum\HasApiTokens;
  * @property int|null $active
  *
  * @property User|null $user
+ * @property Collection|Paiement[] $paiements
  * @property Collection|Profil[] $profils
+ * @property Collection|Transaction[] $transactions
  * @property Collection|User[] $users
  *
  * @package App\Models
@@ -70,9 +72,19 @@ class User extends Authenticatable
         return $this->belongsTo(User::class, 'users_id');
     }
 
+    public function paiements()
+    {
+        return $this->hasMany(Paiement::class, 'users_id');
+    }
+
     public function profils()
     {
         return $this->hasMany(Profil::class, 'users_id');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'users_id');
     }
 
     public function users()

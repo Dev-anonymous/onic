@@ -38,7 +38,7 @@
                                 <div class="col-xl-12 mb-3">
                                     <label for="signin-username" class="form-label text-default">Email ou Tel.</label>
                                     <input required type="text" name="login" class="form-control "
-                                        id="signin-username" placeholder="Email ou Tel. (099..)">
+                                        id="signin-username" placeholder="Email">
                                 </div>
                                 <div class="col-xl-12">
                                     <label for="signin-password" class="form-label text-default d-block">Mot de passe
@@ -94,12 +94,14 @@
                                         id="signin-username" placeholder="Nom complet">
                                 </div>
                                 <div class="row">
-                                    <div class="col-xl-6 mb-3">
+                                    <div class="col-xl-12 mb-3">
                                         <label class="form-label text-default">Téléphone</label>
-                                        <input required type="text" minlength="10" maxlength="10" name="phone"
-                                            class="form-control phone" placeholder="Téléphone, Ex: 099xxx">
+                                        <input required type="text" minlength="9" id="phone"
+                                            class="form-control phone" placeholder="Téléphone">
                                     </div>
-                                    <div class="col-xl-6 mb-3">
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12 mb-3">
                                         <label for="signin-username" class="form-label text-default">Email</label>
                                         <input required type="email" name="email" class="form-control "
                                             id="signin-username" placeholder="Email">
@@ -124,10 +126,36 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="col-xl-12 mb-3">
+                                            <label class="form-label text-default">
+                                                Etat Civil
+                                            </label>
+                                            <select name="etatcivil" required class="form-control">
+                                                <option value=""></option>
+                                                @foreach (getstate() as $el)
+                                                    <option value="{{ $el }}">{{ $el }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="col-xl-12 mb-3">
+                                            <label class="form-label text-default">
+                                                Date de naissance
+                                            </label>
+                                            <input name="datenaissance" required class="form-control "
+                                                placeholder="Date de naissance" type="date">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-xl-12 mb-3">
                                     <label for="signin-username" class="form-label text-default">
                                         Numéro d'ordre</label>
-                                    <input required name="numeroordre" class="form-control " id="signin-username"
+                                    <input name="numeroordre" class="form-control " id="signin-username"
                                         placeholder="Numéro d'ordre">
                                 </div>
                                 <div class="col-xl-12 mb-3">
@@ -138,8 +166,9 @@
                                         placeholder="Adresse physique">
                                 </div>
                                 <div class="col-xl-12 mb-3">
-                                    <label class="form-label text-default">Êtes-vous affilié à une structure de sante
-                                        ?</label>
+                                    <label class="form-label text-default">
+                                        Exerçant ?
+                                    </label>
                                     <select name="affilie" required id="affilie" class="form-control">
                                         <option value=""></option>
                                         <option>NON</option>
@@ -175,8 +204,25 @@
                                         <div class="w-100 text-center" strldr style="display: none">
                                             <i class="bx bx-spin bx-loader"></i>
                                         </div>
-                                        <select name="structure_id" required id="" class="form-control">
+                                        <select name="structuresante_id" required id=""
+                                            class="form-control">
                                         </select>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div class="col-xl-12 mb-3">
+                                                <label class="form-label text-default">
+                                                    Type de structure
+                                                </label>
+                                                <select name="typestructure" required class="form-control">
+                                                    <option value=""></option>
+                                                    @foreach (gettypes() as $el)
+                                                        <option value="{{ $el }}">{{ $el }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-12 mb-3">
@@ -190,11 +236,16 @@
                                             onclick="createpassword('signin-password',this)" id="button-addon2"><i
                                                 class="ri-eye-line align-middle"></i></button>
                                     </div>
-
                                     <div class="col-xl-12 mb-3">
-                                        <label for="text-area" class="form-label">Diplôme de médecine</label>
+                                        <label for="text-area" class="form-label">Diplôme de médecine (.PDF)</label>
                                         <input type="file" class="filepond1" name="file" required
                                             accept=".pdf" data-max-file-size="1024KB" data-max-files="1">
+                                    </div>
+                                    <div class="col-xl-12 mb-3">
+                                        <label for="text-area" class="form-label">Image de profil (png, jpg,
+                                            jpg)</label>
+                                        <input type="file" class="filepond2" name="image" required
+                                            accept=".png,.jpg,.jpeg" data-max-file-size="1024KB" data-max-files="1">
                                     </div>
                                     <div class="mt-2">
                                         <div id="rep"></div>
@@ -225,6 +276,14 @@
     <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/jq.min.js') }}"></script>
     <script src="{{ asset('assets/js/show-password.js') }}"></script>
+
+    <script src="{{ asset('assets/phone/intlTelInput.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/phone/intlTelInput.css') }}">
+    <style>
+        .iti--separate-dial-code {
+            width: 100% !important
+        }
+    </style>
     <script src="{{ asset('assets/js/jquery.mask.min.js') }}"></script>
 
     <script src="{{ asset('assets/libs/filepond/filepond.min.js') }}"></script>
@@ -245,7 +304,19 @@
             }
         });
 
-        $('.phone').mask('0000000000');
+        $('.phone').mask('0000000000000000');
+        var input = document.querySelector("#phone");
+        var iti = intlTelInput(input, {
+            geoIpLookup: function(callback) {
+                $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                    var countryCode = (resp && resp.country) ? resp.country : "CD";
+                    callback(countryCode);
+                });
+            },
+            preferredCountries: ["cd"],
+            initialCountry: "auto",
+            separateDialCode: true,
+        });
 
         $('[singup]').click(function() {
             $('[logcard]').stop().hide();
@@ -301,6 +372,7 @@
             );
 
             pond1 = FilePond.create($('.filepond1')[0]);
+            pond2 = FilePond.create($('.filepond2')[0]);
 
             $('#flcmpt').submit(function() {
                 event.preventDefault();
@@ -308,6 +380,14 @@
                 var form = $(this);
                 var rep = $('#rep', form);
                 rep.html('');
+
+                var dial = $('.iti__selected-dial-code', form).html() + '';
+                if (!dial) {
+                    alert("Veuillez sélectionner l'indicatif du pays a cote du champs téléphone.");
+                    return false;
+                }
+                var tl = $("#phone").val() + '';
+                var tel = dial + tl + '';
 
                 var btn = $(':submit', form);
                 btn.attr('disabled', true);
@@ -318,6 +398,11 @@
                 for (var i = 0; i < pondFiles.length; i++) {
                     d.append('file', pondFiles[i].file);
                 }
+                pondFiles = pond2.getFiles();
+                for (var i = 0; i < pondFiles.length; i++) {
+                    d.append('image', pondFiles[i].file);
+                }
+                d.append('phone', (tel));
 
                 $.ajax({
                     type: 'post',
@@ -351,7 +436,7 @@
             var divstr = $('#divstr');
             var selectZone = $('[name=zone]');
             var selectAire = $('[name=aire]');
-            var selectStr = $('[name=structure_id]');
+            var selectStr = $('[name=structuresante_id]');
 
 
             function toggleAff() {
@@ -365,10 +450,12 @@
                     selectZone.attr('required', true);
                     selectAire.attr('required', true);
                     selectStr.attr('required', true);
+                    $('[name=typestructure]').attr('required', true);
                 } else {
                     selectZone.attr('required', false);
                     selectAire.attr('required', false);
                     selectStr.attr('required', false);
+                    $('[name=typestructure]').attr('required', false);
                 }
             }
 

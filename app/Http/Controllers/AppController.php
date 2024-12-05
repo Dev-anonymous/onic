@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\RecoveryMail;
+use App\Models\Appconfig;
+use App\Models\Contact;
 use App\Models\Depot;
 use App\Models\Invoice;
 use App\Models\Pay;
@@ -13,6 +15,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -24,11 +27,7 @@ class AppController extends Controller
     {
         $login = request('login');
         $data['password'] = request('pass');
-        if (is_numeric($login)) {
-            $data['phone'] = "0" . (int) $login;
-        } else {
-            $data['email'] = $login;
-        }
+        $data['email'] = $login;
 
         if (Auth::attempt($data, request()->has('remember'))) {
             $user = auth()->user();
@@ -198,15 +197,19 @@ class AppController extends Controller
                 'name' => 'required',
                 'email' => 'required|email|unique:users',
                 'password' => 'required',
-                'phone' => 'required|max:10,min:10|unique:users,phone',
+                'phone' => 'required|unique:users,phone',
                 'genre' => 'required|in:M,F',
                 'niveauetude' => 'required|in:' . implode(',', getlevel()),
-                'numeroordre' => 'required|string|max:200',
+                'etatcivil' => 'required|in:' . implode(',', getstate()),
+                'numeroordre' => 'sometimes|string|max:200',
                 'adresse' => 'required|string|max:200',
                 'file' => 'required|mimes:pdf|max:1200',
+                'image' => 'required|mimes:png,jpg,jpeg|max:1200',
+                'datenaissance' => 'required|date',
             ];
             if ('OUI' == $affilie) {
-                $rules['structure_id'] = 'required|exists:structuresante,id';
+                $rules['structuresante_id'] = 'required|exists:structuresante,id';
+                $rules['typestructure'] = 'sometimes|in:' . implode(',', gettypes());
             }
         } else if ('user' == $role) {
             $rules =  [
@@ -214,7 +217,6 @@ class AppController extends Controller
                 'email' => 'required|email|unique:users',
                 'password' => 'required',
                 'phone' => 'required|max:10,min:10|unique:users,phone',
-
             ];
         }
 
@@ -226,12 +228,6 @@ class AppController extends Controller
             ];
         }
 
-        $phone = request('phone');
-        if (!isvalidenumber($phone)) {
-            return [
-                'message' => "Numéro de téléphone non valide"
-            ];
-        }
         $data  = $validator->validated();
 
         $data['password'] = Hash::make($data['password']);
@@ -239,6 +235,7 @@ class AppController extends Controller
         $data['user_role'] =  $role;
 
         DB::transaction(function () use ($data) {
+            $data['image'] = request('image')->store('image', 'public');
             $user = User::create($data);
             $data['users_id'] = $user->id;
             $data['fichier'] = request('file')->store('driver', 'public');
@@ -252,5 +249,107 @@ class AppController extends Controller
             'message' => 'Votre compte a été créé. Bienvenue.',
             'token' => $user->createToken('token')->plainTextToken
         ];
+    }
+
+    function contact()
+    {
+        $rules =  [
+            'nom' => 'required',
+            'telephone' => 'required',
+            'email' => 'required|email',
+            'sujet' => 'required|string|max:100',
+            'message' => 'required|string|max:300',
+        ];
+
+        $validator = Validator::make(request()->all(), $rules);
+
+        if ($validator->fails()) {
+            return [
+                'message' => implode(" ", $validator->errors()->all())
+            ];
+        }
+
+        $data  = $validator->validated();
+        Contact::create($data);
+
+        return [
+            'success' => true,
+            'message' => 'Merci de nous avoir contacter, nous reviendrons à vous si nécessaire.',
+        ];
+    }
+
+    function appconfig()
+    {
+        $rules =  [
+            'tel' => 'sometimes',
+            'email' => 'sometimes|email',
+            'adresse' => 'sometimes|string|max:100',
+            'description' => 'sometimes|string|max:255',
+            'logo' => 'sometimes|mimes:png,jpg,jpeg|max:1200',
+        ];
+
+        $validator = Validator::make(request()->all(), $rules);
+
+        if ($validator->fails()) {
+            return [
+                'message' => implode(" ", $validator->errors()->all())
+            ];
+        }
+
+        $data  = $validator->validated();
+        $ac = Appconfig::first();
+        if ($ac) {
+            unset($data['logo']);
+            $ac->update($data);
+        } else {
+            $ac = Appconfig::create($data);
+        }
+
+        if (request()->has('logo')) {
+            $data['logo'] = request('logo')->store('image', 'public');
+            File::delete('storage/' . $ac->logo);
+            $ac->update($data);
+        }
+
+        return [
+            'success' => true,
+            'message' => 'Données enregistrées.',
+        ];
+    }
+
+    function search()
+    {
+        $q = request('q');
+        $q = explode(' ', $q);
+        $q = array_filter($q);
+
+        if (!count($q)) {
+            return [];
+        }
+
+        $data =  User::with(['profils', 'profils.structuresante']);
+
+        foreach ($q as $s) {
+            $data = $data->orWhere(function ($query) use ($s) {
+                $query->orWhere('name', 'like', "%$s%");
+                $query->orWhere('phone', 'like', "%$s%");
+                $query->orWhere('email', 'like', "%$s%");
+            })
+                // ->orWhereHas('profils', function ($query) use ($s) {
+                //     $query->orWhere('niveauetude', 'like', "%$s%");
+                //     $query->orWhere('genre', 'like', "%$s%");
+                //     $query->orWhere('numeroordre', 'like', "%$s%");
+                //     $query->orWhere('adresse', 'like', "%$s%");
+                //     $query->orWhere('etatcivil', 'like', "%$s%");
+                // })
+
+            ;
+        }
+        $data->orderBy('name');
+
+        $data = $data->get();
+        // dd($data[0]);
+
+        return $data;
     }
 }

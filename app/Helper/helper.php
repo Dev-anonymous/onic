@@ -7,6 +7,7 @@ define('API_HEADEARS',  [
     "x-api-key: $xApiKey"
 ]);
 
+use App\Models\Appconfig;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Commande;
@@ -175,9 +176,31 @@ function userimage($user)
 function getlevel()
 {
     return [
-        'Gradué',
-        'Licencié',
-        'Master',
-        'Doctorat',
+        'D1',
+        'D3',
+        'D3',
     ];
+}
+
+function getstate()
+{
+    return [
+        'Marié',
+        'Célibataire',
+        'Veuf(ve)'
+    ];
+}
+
+function gettypes()
+{
+    return [
+        'Etatique',
+        'Privée',
+        'Confessionnelle',
+    ];
+}
+
+function getappconfig()
+{
+    return Appconfig::first();
 }

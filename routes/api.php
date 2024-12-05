@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AireSanteAPIController;
+use App\Http\Controllers\API\BaniereAPIController;
 use App\Http\Controllers\API\CartAPIController;
 use App\Http\Controllers\API\CategoryAPIController;
 use App\Http\Controllers\API\ConfigAPIController;
@@ -26,9 +27,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('zonesante', ZoneSanteAPIController::class);
     Route::resource('airesante', AireSanteAPIController::class);
     Route::resource('structuresante', StructureSanteAPIController::class);
-
+    Route::resource('baniere', BaniereAPIController::class)->only(['index', 'store', 'destroy']);
+    Route::post('baniere/{baniere}', [BaniereAPIController::class, 'update']);
 
     Route::resource('dash', DashAPIController::class)->only(['index']);
+    Route::post('appconfig', [AppController::class, 'appconfig'])->name('appconfig');
+
     // Route::resource('config', ConfigAPIController::class)->only(['store']);
 
     Route::post('fpi', [AppController::class, 'fpi'])->name('fpi');
@@ -38,4 +42,5 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('pub/airesante', [AireSanteAPIController::class, 'index2'])->name('pub.area');
 Route::get('pub/structuresante', [StructureSanteAPIController::class, 'index2'])->name('pub.structure');
 
-// Route::get('products', [ProductAPIController::class, 'products'])->name('productlist');
+Route::post('contact', [AppController::class, 'contact'])->name('contact');
+Route::post('search', [AppController::class, 'search'])->name('search');

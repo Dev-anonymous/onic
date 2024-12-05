@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Airesante;
+use App\Models\Appconfig;
 use App\Models\Categorie;
 use App\Models\Category;
 use App\Models\Commande;
+use App\Models\Contact;
 use App\Models\Exportation;
 use App\Models\Filiere;
 use App\Models\FiliereHasPromotion;
@@ -65,6 +67,23 @@ class AdminController extends Controller
     function profile()
     {
         return view('admin.profile');
+    }
+
+    function appconfig()
+    {
+        $conf = Appconfig::first();
+        return view('admin.appconfig', compact('conf'));
+    }
+
+    function contact()
+    {
+        $data = Contact::orderBy('id', 'desc')->get();
+        return view('admin.contact', compact('data'));
+    }
+
+    function baniere()
+    {
+        return view('admin.baniere');
     }
 
     function blog()

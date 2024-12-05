@@ -469,7 +469,7 @@ li {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 17px;
   color: #fff;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   padding: 25px 20px;
 }
 
