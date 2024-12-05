@@ -1037,9 +1037,9 @@
                                         <div class="contents text-center">
                                             <h4>${e.name}</h4>
                                             <p>
-                                                <b>Grade : ${ e.profils[0]?.niveauetude }</b> <br>
-                                                <b>Structure : ${ e.profils[0]?.structuresante?.structure } </b> <br>
-                                                <b>Numéro d'ordre : ${ e.profils[0]?.numeroordre ?? '-' }</b> <br>
+                                                <b>Grade : ${ e?.niveauetude }</b> <br>
+                                                <b>Structure : ${ e?.structure } </b> <br>
+                                                <b>Numéro d'ordre : ${ e?.numeroordre ?? '-' }</b> <br>
                                             </p>
                                         </div>
                                     </div>

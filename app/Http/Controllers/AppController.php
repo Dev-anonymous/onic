@@ -319,27 +319,29 @@ class AppController extends Controller
         }
 
         $data =  User::with(['profils', 'profils.structuresante']);
+        $data =  DB::table('users')
+            ->join('profil', 'profil.users_id', '=', 'users.id')
+            ->join('structuresante', 'structuresante.id', '=', 'profil.structuresante_id')
+            ->join('airesante', 'airesante.id', '=', 'structuresante.airesante_id')
+            ->join('zonesante', 'zonesante.id', '=', 'airesante.zonesante_id');
 
         foreach ($q as $s) {
             $data = $data->orWhere(function ($query) use ($s) {
                 $query->orWhere('name', 'like', "%$s%");
                 $query->orWhere('phone', 'like', "%$s%");
                 $query->orWhere('email', 'like', "%$s%");
-            })
-                // ->orWhereHas('profils', function ($query) use ($s) {
-                //     $query->orWhere('niveauetude', 'like', "%$s%");
-                //     $query->orWhere('genre', 'like', "%$s%");
-                //     $query->orWhere('numeroordre', 'like', "%$s%");
-                //     $query->orWhere('adresse', 'like', "%$s%");
-                //     $query->orWhere('etatcivil', 'like', "%$s%");
-                // })
-
-            ;
+                $query->orWhere('niveauetude', 'like', "%$s%");
+                $query->orWhere('genre', 'like', "%$s%");
+                $query->orWhere('numeroordre', 'like', "%$s%");
+                $query->orWhere('etatcivil', 'like', "%$s%");
+                $query->orWhere('structure', 'like', "%$s%");
+                $query->orWhere('structuresante.adresse', 'like', "%$s%");
+                $query->orWhere('airesante', 'like', "%$s%");
+                $query->orWhere('zonesante', 'like', "%$s%");
+            });
         }
         $data->orderBy('name');
-
         $data = $data->get();
-        // dd($data[0]);
 
         return $data;
     }
