@@ -8,6 +8,7 @@ use App\Models\Depot;
 use App\Models\Profil;
 use App\Models\Project;
 use App\Models\Structuresante;
+use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Zonesante;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class DashAPIController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $year = request()->year ?? date('Y');
 
         $data = [];
         if ('admin' == $user->user_role) {
@@ -32,47 +34,42 @@ class DashAPIController extends Controller
 
             $data['nbadmins'] = User::where('user_role', 'admin')->count();
             $data['nbinfirmiers'] = User::where('user_role', 'nurse')->count();
+        }
 
-
+        $data['recent'] = [];
+        $nu = User::where('user_role', 'nurse')->orderBy('name')->limit(10)->get();
+        foreach ($nu as $el) {
+            $data['recent'][] = (object) [
+                'image' => userimage($el),
+                'name' => $el->name,
+                'email' => $el->email,
+                'phone' => $el->phone,
+                'niveauetude' => $el->profils()->first()->niveauetude,
+            ];
         }
 
         $lab = ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-        $protab = [];
-        $prooktab = [];
-        $prononoktab = [];
-        // $cartetab = [];
+        $tab = [];
+        $scdf = [];
+        $susd = [];
 
         foreach (range(1, 12) as $k => $m) {
-            // $protab2 = Project::whereMonth('startdate', $m)->count();
-            // $prooktab2 = Project::where('status', 1)->whereMonth('startdate', $m)->count();
-            // $prononoktab2 = Project::where('status', 0)->whereMonth('startdate', $m)->count();
+            $d = Transaction::selectRaw('sum(montant) as montant')->whereMonth('date', $m)->whereYear('date', $year)->where(['devise' => 'CDF'])->first();
+            $d1 = Transaction::selectRaw('sum(montant) as montant')->whereMonth('date', $m)->whereYear('date', $year)->where(['devise' => 'USD'])->first();
 
-            // if ('admin' == $user->user_role) {
-            //     //
-            // } elseif ('user' == $user->user_role) {
-            //     $profil = $user->profils()->first();
-            //     $cash2 = $cash2->where('profil_id', $profil->id);
-            //     $illico_cash2 = $illico_cash2->where('profil_id', $profil->id);
-            //     $mobile_money2 = $mobile_money2->where('profil_id', $profil->id);
-            //     $carte_bancaire2 = $carte_bancaire2->where('profil_id', $profil->id);
-            // } else if ('agent' == $user->user_role) {
-            //     $cash2 = $cash2->where('users_id', $user->id);
-            //     $illico_cash2 = $illico_cash2->where('users_id', $user->id);
-            //     $mobile_money2 = $mobile_money2->where('users_id', $user->id);
-            //     $carte_bancaire2 = $carte_bancaire2->where('users_id', $user->id);
-            // } else {
-            //     abort(403);
-            // }
+            $scdf[] = (object) ['x' => $lab[$k], 'y' => (float) $d->montant];
+            $susd[] = (object) ['x' => $lab[$k], 'y' => (float) $d1->montant];
+        }
 
-            // $t = (float) $protab2;
-            // $protab[] = (object) ['x' => $lab[$k], 'y' => $t];
+        $tab['CDF'] = $scdf;
+        $tab['USD'] = $susd;
 
-            // $t = (float) $prooktab2;
-            // $prooktab[] = (object) ['x' => $lab[$k], 'y' => $t];
-
-            // $t = (float) $prononoktab2;
-            // $prononoktab[] = (object) ['x' => $lab[$k], 'y' => $t];
+        foreach ($tab as $k => $v) {
+            $series[] = (object) [
+                "type" => 'CDF' == $k ? 'area' : 'line',
+                'name' => $k,
+                'data' => $v
+            ];
         }
 
         // $series[] = (object) [
@@ -80,21 +77,21 @@ class DashAPIController extends Controller
         //     'name' => 'Carte_bancaire',
         //     'data' => $cartetab
         // ];
-        $series[] = (object) [
-            "type" => 'line',
-            'name' => 'Projets en cours',
-            'data' => $prononoktab
-        ];
-        $series[] = (object) [
-            "type" => 'line',
-            'name' => 'Projets Fini',
-            'data' => $prooktab
-        ];
-        $series[] = (object) [
-            "type" => 'area',
-            'name' => 'Projets',
-            'data' => $protab
-        ];
+        // $series[] = (object) [
+        //     "type" => 'line',
+        //     'name' => 'Projets en cours',
+        //     'data' => $prononoktab = []
+        // ];
+        // $series[] = (object) [
+        //     "type" => 'line',
+        //     'name' => 'Projets Fini',
+        //     'data' => $prooktab = []
+        // ];
+        // $series[] = (object) [
+        //     "type" => 'area',
+        //     'name' => 'Projets',
+        //     'data' => $protab = []
+        // ];
 
         $data['chart001'] = $series;
 

@@ -1,5 +1,5 @@
 <?php
-$xApiKey = "S2VsdWhpdXY5K3gva1V1eGI0Mi9QQT09";
+$xApiKey = "MFE2R0s0cEZMZVh2Rm8zb0tZNjNMdz09";  //==> https://gopay.gooomart.com/merchant-dash/integration
 define('API_BASE', 'https://gopay.gooomart.com/api/v2');
 define('API_HEADEARS',  [
     "Accept: application/json",
@@ -8,18 +8,12 @@ define('API_HEADEARS',  [
 ]);
 
 use App\Models\Appconfig;
-use App\Models\Cart;
-use App\Models\Category;
-use App\Models\Commande;
 use App\Models\Config;
-use App\Models\Filiere;
 use App\Models\Pay;
-use App\Models\Product;
-use App\Models\Promotion;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Twilio\Rest\Client;
 
 function v($v, $append = '')
 {
@@ -121,16 +115,7 @@ function saveData($trans)
     DB::transaction(function () use ($trans) {
         $data =  json_decode($trans->data);
         $insert = (array) $data->insertdata;
-        Commande::create($insert);
-        Cart::where('users_id', $insert['users_id'])->delete();
-        $art = json_decode($insert['articles']);
-        foreach ($art as $el) {
-            $p = Product::where('id', $el->id)->first();
-            if ($p) {
-                $st = $p->stock - $el->qty;
-                $p->update(['stock' => $st]);
-            }
-        }
+        Transaction::create($insert);
         $trans->update(['saved' => 1, 'failed' => 0]);
     });
 }

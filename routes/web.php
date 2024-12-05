@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
             Route::get('app-contact',  'contact')->name('admin.contact');
             Route::get('app-hero',  'baniere')->name('admin.baniere');
             Route::get('blog',  'blog')->name('admin.blog');
+            Route::get('payment',  'payment')->name('admin.payment');
         });
     });
 

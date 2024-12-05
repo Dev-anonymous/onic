@@ -1,12 +1,27 @@
 <aside class="app-sidebar sticky" id="sidebar">
     <div class="main-sidebar-header">
+        @php
+            $logo = @getappconfig()->logo;
+            if (!$logo) {
+                $logo = 'ressources/images/logo.png';
+            } else {
+                $logo = asset('storage/' . $logo);
+            }
+        @endphp
         <a href="{{ route('login') }}" class="header-logo">
-            <img src="{{ asset('assets/images/brand-logos/desktop-logo.png') }}" alt="logo" class="desktop-logo">
+            <img src="{{ $logo }}}" alt="logo" class="desktop-logo">
+            <img src="{{ $logo }}" alt="logo" class="toggle-logo">
+            <img src="{{ $logo }}" alt="logo" class="desktop-dark">
+            <img src="{{ $logo }}" alt="logo" class="toggle-dark">
+            <img src="{{ $logo }}" alt="logo" class="desktop-white">
+            <img src="{{ $logo }}" alt="logo" class="toggle-white">
+
+            {{-- <img src="{{ asset('assets/images/brand-logos/desktop-logo.png') }}" alt="logo" class="desktop-logo">
             <img src="{{ asset('assets/images/brand-logos/toggle-logo.png') }}" alt="logo" class="toggle-logo">
             <img src="{{ asset('assets/images/brand-logos/desktop-dark.png') }}" alt="logo" class="desktop-dark">
             <img src="{{ asset('assets/images/brand-logos/toggle-dark.png') }}" alt="logo" class="toggle-dark">
             <img src="{{ asset('assets/images/brand-logos/desktop-white.png') }}" alt="logo" class="desktop-white">
-            <img src="{{ asset('assets/images/brand-logos/toggle-white.png') }}" alt="logo" class="toggle-white">
+            <img src="{{ asset('assets/images/brand-logos/toggle-white.png') }}" alt="logo" class="toggle-white"> --}}
         </a>
     </div>
     <div class="main-sidebar" id="sidebar-scroll">
@@ -40,6 +55,25 @@
                             <li class="slide">
                                 <a href="{{ route('admin.home') }}"
                                     class="side-menu__item @if (Route::is('admin.home')) active @endif">Dashboard</a>
+                            </li>
+                        </ul>
+                    </li>
+                    @php
+                        $cl = Route::is('admin.payment') ? 'active open' : '';
+                    @endphp
+                    <li class="slide has-sub {{ $cl }}">
+                        <a href="javascript:void(0);" class="side-menu__item {{ $cl }}">
+                            <i class="bx bxs-badge-dollar side-menu__icon"></i>
+                            <span class="side-menu__label">Paiements</span>
+                            <i class="fe fe-chevron-right side-menu__angle"></i>
+                        </a>
+                        <ul class="slide-menu child1">
+                            <li class="slide side-menu__label1">
+                                <a href="javascript:void(0)">Paiements</a>
+                            </li>
+                            <li class="slide">
+                                <a href="{{ route('admin.payment') }}"
+                                    class="side-menu__item @if (Route::is('admin.payment')) active @endif">Paiements</a>
                             </li>
                         </ul>
                     </li>
@@ -104,7 +138,7 @@
                     @php
                         $cl = Route::is('admin.blog') ? 'active open' : '';
                     @endphp
-                    <li class="slide has-sub {{ $cl }}">
+                    {{-- <li class="slide has-sub {{ $cl }}">
                         <a href="javascript:void(0);" class="side-menu__item {{ $cl }}">
                             <i class="bx bxs-notepad side-menu__icon"></i>
                             <span class="side-menu__label">Publication </span>
@@ -119,7 +153,7 @@
                                     class="side-menu__item @if (Route::is('admin.blog')) active @endif">Blog</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     @php
                         $cl = Route::is('admin.contact') ? 'active open' : '';
                     @endphp
@@ -178,16 +212,16 @@
                     <li class="slide has-sub {{ $cl }}">
                         <a href="javascript:void(0);" class="side-menu__item {{ $cl }}">
                             <i class="bx bx-home side-menu__icon"></i>
-                            <span class="side-menu__label">Dashboard </span>
+                            <span class="side-menu__label">Paiement </span>
                             <i class="fe fe-chevron-right side-menu__angle"></i>
                         </a>
                         <ul class="slide-menu child1">
                             <li class="slide side-menu__label1">
-                                <a href="javascript:void(0)">Dashboard</a>
+                                <a href="javascript:void(0)">Paiement</a>
                             </li>
                             <li class="slide">
                                 <a href="{{ route('nurse.home') }}"
-                                    class="side-menu__item @if (Route::is('nurse.home')) active @endif">Dashboard</a>
+                                    class="side-menu__item @if (Route::is('nurse.home')) active @endif">Paiement</a>
                             </li>
                         </ul>
                     </li>

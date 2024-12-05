@@ -51,8 +51,14 @@ class UserAPIController extends Controller
                 $o->profil = (object)$pro;
 
                 $pai = [];
-
-                foreach ($el->paiements()->orderBy('id', 'desc')->get() as $el) {
+                foreach ($el->transactions()->orderBy('id', 'desc')->get() as $el2) {
+                    $pai[] = (object) [
+                        'infirmier' => $el->name,
+                        'ref' => $el2->ref,
+                        'description' => $el2->paiement->description,
+                        'montant' => v($el2->montant, $el2->devise),
+                        'date' => $el2->date->format('d-m-Y H:i:s'),
+                    ];
                 }
                 $o->trans = $pai;
 

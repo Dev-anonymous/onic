@@ -63,7 +63,6 @@ class AdminController extends Controller
         return view('admin.nurse');
     }
 
-
     function profile()
     {
         return view('admin.profile');
@@ -84,6 +83,11 @@ class AdminController extends Controller
     function baniere()
     {
         return view('admin.baniere');
+    }
+
+    function payment()
+    {
+        return view('admin.payment');
     }
 
     function blog()

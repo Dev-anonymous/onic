@@ -82,6 +82,39 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="showmdl">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content modal-content-demo">
+                <form action="#" id="fdel">
+                    <div class="modal-body text-start">
+                        <input type="hidden" name="id">
+                        <h6>Transaction (<span n></span>)</h6>
+                        <hr>
+                        <div class="mt-2">
+                            <div class="table-responsive">
+                                <table class="table table-hover w-100" id="table2">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:5px!important"><span ldr2></span></th>
+                                            <th>Infirmier</th>
+                                            <th>Montant</th>
+                                            <th>Référence</th>
+                                            <th>Description</th>
+                                            <th>Date paiement</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-light btn-sm" data-bs-dismiss="modal" type="button">Fermer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <x-js-file />
     <x-datatable />
 
@@ -91,6 +124,8 @@
 
             var table = $('#table');
             table.DataTable();
+            var table2 = $('#table2');
+            table2.DataTable();
 
             function getdata() {
                 $('span[ldr]').removeClass().addClass('bx bx-spin bx-loader bx-sm');
@@ -100,7 +135,6 @@
                         table.DataTable().destroy();
                         var html = '';
                         res.data.forEach((user, i) => {
-
                             html += `<tr>
                             <td>${i+1}</td>
                             <td><img src="${user.image}" alt="img" width="32" height="32" class="rounded-circle"></td>
@@ -126,7 +160,7 @@
                                 </td>
                             <td>
                                 <div class='d-flex justify-content-end'>
-                                    <button class="btn btn-primary btn-sm m-1" data="${escape(JSON.stringify(user))}"  value="${user.id}" bedit><i class='bx bx-dollar'></i></button>
+                                    <button class="btn btn-primary btn-sm m-1" data="${escape(JSON.stringify(user))}"  value="${user.id}" btrans><i class='bx bx-dollar'></i></button>
                                     <button class="btn btn-outline-danger btn-sm m-1"  value="${user.id}" bdel ><i class='bx bx-trash'></i></button>
                                 </div>
                             </td>
@@ -140,6 +174,39 @@
                             var v = this.value;
                             var mdl = $('#delmdl')
                             $('[name=id]', mdl).val(v);
+                            mdl.modal('show');
+                        });
+                        $('[btrans]').off('click').click(function() {
+                            event.preventDefault();
+                            var data = JSON.parse(unescape($(this).attr('data')));
+                            var t = data.trans;
+                            var mdl = $('#showmdl');
+                            var html = '';
+                            t.forEach((el, i) => {
+                                html += `<tr>
+                                    <td>${i+1}</td>
+                                    <td>${el.infirmier}</td>
+                                    <td>${el.montant}</td>
+                                    <td>${el.ref}</td>
+                                    <td>${el.description}</td>
+                                    <td>${el.date}</td>
+                                </tr>
+                                `;
+                            });
+
+                            table2.DataTable().destroy();
+                            table2.find('tbody').html(html);
+                            $('span[n]').html(t.length);
+                            table2.DataTable({
+                                order: [],
+                                dom: 'Bflrtip',
+                                buttons: [
+                                    'copy', 'csv', 'excel', 'pdf', 'print'
+                                ],
+                                layout: {
+                                    topStart: 'buttons'
+                                }
+                            });
                             mdl.modal('show');
                         });
 

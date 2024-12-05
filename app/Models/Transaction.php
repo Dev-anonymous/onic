@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $devise
  * @property Carbon|null $date
  * @property string|null $ref
- * @property string|null $paydata
  * 
  * @property Paiement $paiement
  * @property User $user
@@ -44,8 +43,7 @@ class Transaction extends Model
 		'montant',
 		'devise',
 		'date',
-		'ref',
-		'paydata'
+		'ref'
 	];
 
 	public function paiement()

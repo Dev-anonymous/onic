@@ -9,11 +9,13 @@ use App\Http\Controllers\API\DashAPIController;
 use App\Http\Controllers\API\DepotAPIController;
 use App\Http\Controllers\API\ExportAPIController;
 use App\Http\Controllers\API\FacultAPIController;
+use App\Http\Controllers\API\PaymentAPIController;
 use App\Http\Controllers\API\ProductAPIController;
 use App\Http\Controllers\API\ProjectAPIController;
 use App\Http\Controllers\API\StructureSanteAPIController;
 use App\Http\Controllers\API\TaskAPIController;
 use App\Http\Controllers\API\TauxAPIController;
+use App\Http\Controllers\API\TransactionAPIController;
 use App\Http\Controllers\API\UserAPIController;
 use App\Http\Controllers\API\ZoneSanteAPIController;
 use App\Http\Controllers\AppController;
@@ -24,6 +26,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('users', UserAPIController::class)->only(['index', 'store', 'destroy']);
     Route::post('users/{user}', [UserAPIController::class, 'update']);
 
+    Route::resource('paiement', PaymentAPIController::class);
+    Route::resource('transaction', TransactionAPIController::class)->only(['index']);
     Route::resource('zonesante', ZoneSanteAPIController::class);
     Route::resource('airesante', AireSanteAPIController::class);
     Route::resource('structuresante', StructureSanteAPIController::class);

@@ -114,7 +114,7 @@
                                         </div>
                                     </div>
                                     <div class="card-body" style="height: 510px; overflow: auto;">
-                                        <ul class="list-unstyled mb-0" recenttrans></ul>
+                                        <ul class="list-unstyled mb-0" recent></ul>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                             <div class="col-xl-12">
                                 <div class="card custom-card">
                                     <div class="card-header justify-content-between">
-                                        <div class="card-title">Statistiques annuelles d'abonnement</div>
+                                        <div class="card-title">Statistiques de transaction</div>
                                     </div>
                                     <div class="card-body">
                                         <div id="chart001"></div>
@@ -220,8 +220,7 @@
                         var series = [data.nbinfirmiers, data.nbadmins];
 
                         cmptgraph.updateSeries(series);
-
-                        // chart001.updateSeries(data.chart001);
+                        chart001.updateSeries(data.chart001);
 
                         var html = '';
                         var topproject = data.topproject;
@@ -260,33 +259,35 @@
                         $('[table]').find('tbody').html(html);
 
                         html = '';
-                        var recentproject = data.recentproject;
-                        $(recentproject).each(function(i, e) {
+                        var recent = data.recent;
+                        $(recent).each(function(i, e) {
                             html += `
                             <li class="mb-3" >
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <div class="lh-1">
-                                            <i class="bx bx-check-circle bx-sm"></i>
+                                <a href="{{ route('admin.nurse') }}">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="lh-1">
+                                                <img src="${e.image}" alt="img" width="32" height="32" class="rounded-circle">
+                                            </div>
+                                            <div class="p-2">
+                                                <p class="mb-0 fw-semibold">${e.name}</p>
+                                                <p class="mb-0 fs-11 text-success fw-semibold">Niveau étude : ${e.niveauetude}</p>
+                                            </div>
                                         </div>
-                                        <div class="p-2">
-                                            <p class="mb-0 fw-semibold">${e.name}</p>
-                                            <p class="mb-0 fs-11 text-success fw-semibold">${e.budget}</p>
+                                        <div class="text-end">
+                                            <p class="mb-0 fw-semibold">
+                                                ${e.phone}
+                                            </p>
+                                            <p class="mb-0 op-7 text-muted fs-11">
+                                                ${e.email}
+                                            </p>
                                         </div>
                                     </div>
-                                    <div class="text-end">
-                                        <p class="mb-0 fw-semibold">
-                                            ${e.startdate}
-                                        </p>
-                                        <p class="mb-0 op-7 text-muted fs-11">
-                                            ${e.enddate}
-                                        </p>
-                                    </div>
-                                </div>
+                                </a>
                             </li>
                             `;
                         });
-                        $('[recenttrans]').html(html);
+                        $('[recent]').html(html);
                     },
                     error: function(res) {
 
@@ -339,242 +340,7 @@
             cmptgraph.render();
 
             var options2 = {
-                series: [
-                    // {
-                    //     type: 'line',
-                    //     name: 'Carte_bancaire',
-                    //     data: [{
-                    //             x: 'Jan',
-                    //             y: 200
-                    //         },
-                    //         {
-                    //             x: 'Feb',
-                    //             y: 310
-                    //         },
-                    //         {
-                    //             x: 'Mar',
-                    //             y: 280
-                    //         },
-                    //         {
-                    //             x: 'Apr',
-                    //             y: 454
-                    //         },
-                    //         {
-                    //             x: 'May',
-                    //             y: 30
-                    //         },
-                    //         {
-                    //             x: 'Jun',
-                    //             y: 420
-                    //         },
-                    //         {
-                    //             x: 'Jul',
-                    //             y: 556
-                    //         },
-                    //         {
-                    //             x: 'Aug',
-                    //             y: 230
-                    //         },
-                    //         {
-                    //             x: 'Sep',
-                    //             y: 350
-                    //         },
-                    //         {
-                    //             x: 'Oct',
-                    //             y: 350
-                    //         },
-                    //         {
-                    //             x: 'Nov',
-                    //             y: 210
-                    //         },
-                    //         {
-                    //             x: 'Dec',
-                    //             y: 410
-                    //         }
-                    //     ]
-                    // },
-                    // {
-                    //     type: 'line',
-                    //     name: 'Mobile_money',
-                    //     data: [{
-                    //             x: 'Jan',
-                    //             y: 100
-                    //         },
-                    //         {
-                    //             x: 'Feb',
-                    //             y: 210
-                    //         },
-                    //         {
-                    //             x: 'Mar',
-                    //             y: 180
-                    //         },
-                    //         {
-                    //             x: 'Apr',
-                    //             y: 454
-                    //         },
-                    //         {
-                    //             x: 'May',
-                    //             y: 230
-                    //         },
-                    //         {
-                    //             x: 'Jun',
-                    //             y: 320
-                    //         },
-                    //         {
-                    //             x: 'Jul',
-                    //             y: 656
-                    //         },
-                    //         {
-                    //             x: 'Aug',
-                    //             y: 830
-                    //         },
-                    //         {
-                    //             x: 'Sep',
-                    //             y: 350
-                    //         },
-                    //         {
-                    //             x: 'Oct',
-                    //             y: 350
-                    //         },
-                    //         {
-                    //             x: 'Nov',
-                    //             y: 210
-                    //         },
-                    //         {
-                    //             x: 'Dec',
-                    //             y: 410
-                    //         }
-                    //     ]
-                    // },
-                    // {
-                    //     type: 'line',
-                    //     name: 'Illico_cash',
-                    //     chart: {
-                    //         dropShadow: {
-                    //             enabled: true,
-                    //             enabledOnSeries: undefined,
-                    //             top: 5,
-                    //             left: 0,
-                    //             blur: 3,
-                    //             color: '#000',
-                    //             opacity: 0.1
-                    //         }
-                    //     },
-                    //     data: [{
-                    //             x: 'Jan',
-                    //             y: 180
-                    //         },
-                    //         {
-                    //             x: 'Feb',
-                    //             y: 620
-                    //         },
-                    //         {
-                    //             x: 'Mar',
-                    //             y: 476
-                    //         },
-                    //         {
-                    //             x: 'Apr',
-                    //             y: 220
-                    //         },
-                    //         {
-                    //             x: 'May',
-                    //             y: 520
-                    //         },
-                    //         {
-                    //             x: 'Jun',
-                    //             y: 780
-                    //         },
-                    //         {
-                    //             x: 'Jul',
-                    //             y: 435
-                    //         },
-                    //         {
-                    //             x: 'Aug',
-                    //             y: 515
-                    //         },
-                    //         {
-                    //             x: 'Sep',
-                    //             y: 738
-                    //         },
-                    //         {
-                    //             x: 'Oct',
-                    //             y: 454
-                    //         },
-                    //         {
-                    //             x: 'Nov',
-                    //             y: 525
-                    //         },
-                    //         {
-                    //             x: 'Dec',
-                    //             y: 230
-                    //         }
-                    //     ]
-                    // },
-                    // {
-                    //     type: 'area',
-                    //     name: 'Cash',
-                    //     chart: {
-                    //         dropShadow: {
-                    //             enabled: true,
-                    //             enabledOnSeries: undefined,
-                    //             top: 5,
-                    //             left: 0,
-                    //             blur: 3,
-                    //             color: '#000',
-                    //             opacity: 0.1
-                    //         }
-                    //     },
-                    //     data: [{
-                    //             x: 'Jan',
-                    //             y: 200
-                    //         },
-                    //         {
-                    //             x: 'Feb',
-                    //             y: 530
-                    //         },
-                    //         {
-                    //             x: 'Mar',
-                    //             y: 110
-                    //         },
-                    //         {
-                    //             x: 'Apr',
-                    //             y: 130
-                    //         },
-                    //         {
-                    //             x: 'May',
-                    //             y: 480
-                    //         },
-                    //         {
-                    //             x: 'Jun',
-                    //             y: 520
-                    //         },
-                    //         {
-                    //             x: 'Jul',
-                    //             y: 780
-                    //         },
-                    //         {
-                    //             x: 'Aug',
-                    //             y: 435
-                    //         },
-                    //         {
-                    //             x: 'Sep',
-                    //             y: 475
-                    //         },
-                    //         {
-                    //             x: 'Oct',
-                    //             y: 738
-                    //         },
-                    //         {
-                    //             x: 'Nov',
-                    //             y: 454
-                    //         },
-                    //         {
-                    //             x: 'Dec',
-                    //             y: 480
-                    //         }
-                    //     ]
-                    // }
-                ],
+                series: [],
                 chart: {
                     height: 350,
                     animations: {
@@ -594,8 +360,8 @@
                         enabled: false,
                     }
                 },
-                colors: ["rgba(120, 190, 12, 0.75)", "rgb(132, 90, 223)", "rgba(35, 183, 229, 0.5)",
-                    "rgba(119, 119, 142, 0.15)"
+                colors: ["rgba(255, 90, 60, 0.5)", "rgba(35, 183, 229, 0.5)",
+
                 ],
                 dataLabels: {
                     enabled: false

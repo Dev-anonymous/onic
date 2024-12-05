@@ -7,10 +7,12 @@ use App\Models\Appconfig;
 use App\Models\Contact;
 use App\Models\Depot;
 use App\Models\Invoice;
+use App\Models\Paiement;
 use App\Models\Pay;
 use App\Models\Pending;
 use App\Models\Product;
 use App\Models\Profil;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,7 +59,8 @@ class AppController extends Controller
     {
         $validator = Validator::make(request()->all(), [
             'phone' => 'required|string|min:10|max:10',
-        ], ['phone.required' => 'Saisissez le numéro Mobile Money']);
+            'paiement_id' => 'required|exists:paiement,id',
+        ]);
 
         if ($validator->fails()) {
             return [
@@ -70,51 +73,39 @@ class AppController extends Controller
                 'message' => "Numéro de téléphone non valide"
             ];
         }
-        $data  = $validator->validated();
 
-        $amount = 0;
-        $articles = [];
-        $error = [];
-        foreach (auth()->user()->carts()->get() as $el) {
-            $amount += $el->qty * $el->product->price;
-            $articles[] = (object) [
-                'id' => $el->product->id,
-                'name' => $el->product->name,
-                'price' => $el->product->price,
-                'qty' => $el->qty,
-                'total' => v($el->qty * $el->product->price, 'CDF'),
-            ];
-            $prod = Product::where('id', $el->product_id)->first();
-            if ($el->qty > $prod->stock) {
-                $error[] = "$prod->stock \"$prod->name\" en stock<br/>";
-            }
-        }
+        $paiement = Paiement::where('id', request('paiement_id'))->first();
+        $devise = $paiement->devise;
+        $montant = $paiement->montant;
 
-        if (count($error)) {
-            $m = "Il ne reste que : <br/>" . implode(' ', $error);
-            $m .= "Veuillez modifier la quantité dans votre panier.";
+        $np = Transaction::where(['users_id' => auth()->user()->id, 'paiement_id' => $paiement->id])->sum('montant');
+        $canpay = $paiement->montant > $np;
+        if (!$canpay) {
             return [
-                'message' => $m
+                'message' => "Vous ne pouvez pas effectuer cette opération."
             ];
         }
 
-        $devise = 'CDF';
-
-        if ($devise == 'CDF' && $amount < 500) {
+        if ($devise == 'CDF' && $montant < 500) {
             return [
                 'message' => 'Le montant minimum de paiement est de 500 FC'
             ];
         }
-        abort_if(!in_array(auth()->user()->user_role, ['user', 'student']), 403);
+        if ($devise == 'USD' && $montant < 1) {
+            return [
+                'message' => 'Le montant minimum de paiement est de 1 USD'
+            ];
+        }
+        abort_if(!in_array(auth()->user()->user_role, ['nurse']), 403);
 
-        $pdata = compact('phone', 'devise', 'amount');
-
+        $pdata = compact('phone', 'devise', 'montant');
         $myref = uniqid('TRANS.', true);
 
         $insertdata = [
             'users_id' => auth()->user()->id,
-            'articles' => json_encode($articles),
-            'total_cdf' => $amount,
+            'paiement_id' => $paiement->id,
+            'montant' => $montant,
+            'devise' => $devise,
             'ref' => $myref,
             'date' => nnow(),
         ];
@@ -129,7 +120,7 @@ class AppController extends Controller
         ]);
 
         $pn = "243" . ((int) $phone);
-        $rep = gopay_init_payment($amount, $devise, $pn, $myref);
+        $rep = gopay_init_payment($montant, $devise, $pn, $myref);
 
         if ($rep->success) {
             $pdata['apiresponse'] = $rep->data;

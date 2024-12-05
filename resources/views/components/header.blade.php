@@ -2,9 +2,41 @@
     <div class="main-header-container container-fluid">
         <div class="header-content-left">
             <div class="header-element">
+                @auth
+                    @php
+                        $user = auth()->user();
+                        $img = userimage($user);
+                        $href = '';
+                        $dah = '';
+                        if ($user->user_role == 'admin') {
+                            $href = route('admin.profile');
+                            $dah = route('admin.home');
+                        }
+                        if ($user->user_role == 'nurse') {
+                            $href = route('nurse.profile');
+                            $dah = route('nurse.home');
+                        }
+
+                        $logo = @getappconfig()->logo;
+                        if (!$logo) {
+                            $logo = 'ressources/images/logo.png';
+                        } else {
+                            $logo = asset('storage/' . $logo);
+                        }
+                    @endphp
+                @endauth
                 <div class="horizontal-logo">
-                    <a href="index.html" class="header-logo">
-                        <img src="{{ asset('assets/images/brand-logos/desktop-logo.png') }}" alt="logo"
+                    <a href="{{ $dah }}" class="header-logo">
+
+                        <img src="{{ $logo }}" alt="logo" class="desktop-dark">
+                        <img src="{{ $logo }}}" alt="logo" class="desktop-logo">
+                        <img src="{{ $logo }}" alt="logo" class="toggle-logo">
+                        <img src="{{ $logo }}" alt="logo" class="desktop-dark">
+                        <img src="{{ $logo }}" alt="logo" class="toggle-dark">
+                        <img src="{{ $logo }}" alt="logo" class="desktop-white">
+                        <img src="{{ $logo }}" alt="logo" class="toggle-white">
+
+                        {{-- <img src="{{ asset('assets/images/brand-logos/desktop-logo.png') }}" alt="logo"
                             class="desktop-logo">
                         <img src="{{ asset('assets/images/brand-logos/toggle-logo.png') }}" alt="logo"
                             class="toggle-logo">
@@ -15,7 +47,7 @@
                         <img src="{{ asset('assets/images/brand-logos/desktop-white.png') }}" alt="logo"
                             class="desktop-white">
                         <img src="{{ asset('assets/images/brand-logos/toggle-white.png') }}" alt="logo"
-                            class="toggle-white">
+                            class="toggle-white"> --}}
                     </a>
                 </div>
             </div>
@@ -30,22 +62,7 @@
             </div>
         </div>
         <div class="header-content-right">
-            @auth
-                @php
-                    $user = auth()->user();
-                    $img = userimage($user);
-                    $href = '';
-                    $dah = '';
-                    if ($user->user_role == 'admin') {
-                        $href = route('admin.profile');
-                        $dah = route('admin.home');
-                    }
-                    if ($user->user_role == 'nurse') {
-                        $href = route('nurse.profile');
-                        $dah = route('nurse.home');
-                    }
-                @endphp
-            @endauth
+
             @if (!Route::is('home'))
                 <div class="header-element">
                     <a href="{{ route('home') }}" class="header-link">

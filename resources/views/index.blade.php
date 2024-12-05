@@ -18,7 +18,7 @@
             <div class="container clearfix">
                 <div class="logo">
                     <figure>
-                        <a href="index-2.html">
+                        <a href="{{ route('home') }}">
                             @php
                                 $logo = @getappconfig()->logo;
                                 if (!$logo) {
