@@ -11,6 +11,7 @@ use App\Models\Structuresante;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Zonesante;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashAPIController extends Controller
@@ -30,10 +31,38 @@ class DashAPIController extends Controller
             $data['zonesante']  = Zonesante::count();
             $data['airesante']  = Airesante::count();
             $data['structuresante']  = Structuresante::count();
-            $data['blog']  = 0;
+            $data['trans']  = Transaction::count();
 
             $data['nbadmins'] = User::where('user_role', 'admin')->count();
             $data['nbinfirmiers'] = User::where('user_role', 'nurse')->count();
+            $h = $f = 0;
+            $ages = [];
+
+            foreach (User::where('user_role', 'nurse')->get() as $el) {
+                $genre = @$el->profils()->first()->genre;
+                if ('M' == $genre) {
+                    $h++;
+                }
+                if ('F' == $genre) {
+                    $f++;
+                }
+                $ages[] = (new Carbon($el->profils()->first()->datenaissance))->diffInYears();
+            }
+            $data['hommefemme'] = "$h/$f";
+
+            $data['agemoyen'] = '-';
+            try {
+                $data['agemoyen'] = round(array_sum($ages) / count($ages)) . ' ans';
+            } catch (\Throwable $th) {
+            }
+            $data['plusage'] = max($ages) . ' ans';
+            $data['moinsage'] = min($ages) . ' ans';
+
+            $st = [];
+            foreach (gettypes() as $el) {
+                $st[$el] = Profil::where('typestructure', $el)->count();
+            }
+            $data['appartenance'] = $st;
         }
 
         $data['recent'] = [];
@@ -71,27 +100,6 @@ class DashAPIController extends Controller
                 'data' => $v
             ];
         }
-
-        // $series[] = (object) [
-        //     "type" => 'line',
-        //     'name' => 'Carte_bancaire',
-        //     'data' => $cartetab
-        // ];
-        // $series[] = (object) [
-        //     "type" => 'line',
-        //     'name' => 'Projets en cours',
-        //     'data' => $prononoktab = []
-        // ];
-        // $series[] = (object) [
-        //     "type" => 'line',
-        //     'name' => 'Projets Fini',
-        //     'data' => $prooktab = []
-        // ];
-        // $series[] = (object) [
-        //     "type" => 'area',
-        //     'name' => 'Projets',
-        //     'data' => $protab = []
-        // ];
 
         $data['chart001'] = $series;
 

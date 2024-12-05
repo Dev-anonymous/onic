@@ -33,7 +33,7 @@
                     <div class="col-xl-12">
                         <div class="card custom-card">
                             <div class="card-header d-flex justify-content-between">
-                                <div class="card-title">Contacts & Suggestions</div>
+                                <div class="card-title">Contacts & Suggestions ({{ count($data) }})</div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -82,9 +82,7 @@
     <div id="responsive-overlay"></div>
 
     <x-js-file />
-    <script>
-
-    </script>
+    <script></script>
 
 </body>
 

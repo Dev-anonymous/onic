@@ -89,16 +89,16 @@
                                 </a>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xl-6">
-                                <a href="{{ route('admin.blog') }}">
+                                <a href="{{ route('admin.payment') }}">
                                     <div class="card custom-card">
                                         <div class="card-body d-flex justify-content-between align-items-center">
                                             <div>
-                                                <p class="mb-2">Blog</p>
-                                                <h4 class="mb-0 fw-semibold mb-2" blog></h4>
+                                                <p class="mb-2">Transactions</p>
+                                                <h4 class="mb-0 fw-semibold mb-2" trans></h4>
                                             </div>
                                             <div>
                                                 <span class="avatar avatar-md bg-warning p-2">
-                                                    <i class="bx bxs-notepad fs-20 op-7"></i>
+                                                    <i class="bx bxs-badge-dollar fs-20 op-7"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -106,6 +106,50 @@
                                 </a>
                             </div>
 
+                            <div class="col-lg-6">
+                                <a href="{{ route('admin.nurse') }}">
+                                    <div class="card custom-card">
+                                        <div class="card-body d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <p class="mb-2"><i class="bx bx-check-circle">
+                                                    </i> Hommes/Femmes : <b hommefemme></b>
+                                                </p>
+                                                <p class="mb-2"><i class="bx bx-check-circle">
+                                                    </i> Age moyen : <b agemoyen></b>
+                                                </p>
+                                                <p class="mb-2"><i class="bx bx-check-circle">
+                                                    </i> Plus âgé : <b plusage></b>
+                                                </p>
+                                                <p class="mb-2"><i class="bx bx-check-circle">
+                                                    </i> Moins âgé : <b moinsage></b>
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <span class="avatar avatar-md bg-secondary p-2">
+                                                    <i class="bx bxs-user-detail fs-20 op-7"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-6">
+                                <a href="{{ route('admin.nurse') }}">
+                                    <div class="card custom-card" style="height: 150px; overflow: auto;">
+                                        <small class="text-center">Appartenance</small>
+                                        <div class="card-body d-flex justify-content-between align-items-center">
+                                            <div divapp>
+
+                                            </div>
+                                            <div>
+                                                <span class="avatar avatar-md bg-danger p-2">
+                                                    <i class="bx bxs-building-house fs-20 op-7"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                             <div class="col-xl-12">
                                 <div class="card custom-card">
                                     <div class="card-header justify-content-between">
@@ -215,7 +259,22 @@
                         $('[zonesante]').html(data.zonesante);
                         $('[airesante]').html(data.airesante);
                         $('[structuresante]').html(data.structuresante);
-                        $('[blog]').html(data.blog);
+                        $('[trans]').html(data.trans);
+                        $('[hommefemme]').html(data.hommefemme);
+                        $('[agemoyen]').html(data.agemoyen);
+                        $('[plusage]').html(data.plusage);
+                        $('[moinsage]').html(data.moinsage);
+
+                        var appatb = data.appartenance;
+                        var kys = Object.keys(appatb);
+                        var h='';
+                        kys.forEach((element, idx) => {
+                             h += `<p class="mb-2"><i class="bx bx-check-circle">
+                                    </i> ${element} : <b>${appatb[element]}</b>
+                                </p>
+                                `;
+                        });
+                        $('[divapp]').html(h);
 
                         var series = [data.nbinfirmiers, data.nbadmins];
 

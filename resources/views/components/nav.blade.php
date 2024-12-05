@@ -20,7 +20,13 @@
                     </li>
                 @endguest
                 <li>
-                    <a href="#">Blog</a>
+                    <a href="#">Formations</a>
+                </li>
+                <li>
+                    <a href="#">Projets</a>
+                </li>
+                <li>
+                    <a href="#">Evènements</a>
                 </li>
                 <li>
                     <a href="#" id="bcont">Contact</a>

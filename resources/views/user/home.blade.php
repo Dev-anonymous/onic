@@ -63,13 +63,6 @@
                         <div class="card custom-card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="card-title">Paiements</div>
-                                <div class="m-2">
-                                    <button
-                                        class="modal-effect btn btn-outline-dark btn-sm btn-wave waves-effect waves-light"
-                                        data-bs-effect="effect-flip-vertical" data-bs-toggle="modal"
-                                        href="#mdl">Ajouter
-                                    </button>
-                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
