@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Airesante;
 use App\Models\Appconfig;
 use App\Models\Categorie;
+use App\Models\Categoriepublication;
 use App\Models\Category;
 use App\Models\Commande;
 use App\Models\Contact;
@@ -92,6 +93,11 @@ class AdminController extends Controller
 
     function blog()
     {
-        return view('admin.blog');
+        $category = Categoriepublication::orderBy('categorie')->get();
+        return view('admin.blog', compact('category'));
+    }
+    function category()
+    {
+        return view('admin.category');
     }
 }

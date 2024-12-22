@@ -136,9 +136,9 @@
                         </ul>
                     </li>
                     @php
-                        $cl = Route::is('admin.blog') ? 'active open' : '';
+                        $cl = (Route::is('admin.blog') or Route::is('admin.category')) ? 'active open' : '';
                     @endphp
-                    {{-- <li class="slide has-sub {{ $cl }}">
+                    <li class="slide has-sub {{ $cl }}">
                         <a href="javascript:void(0);" class="side-menu__item {{ $cl }}">
                             <i class="bx bxs-notepad side-menu__icon"></i>
                             <span class="side-menu__label">Publication </span>
@@ -152,8 +152,12 @@
                                 <a href="{{ route('admin.blog') }}"
                                     class="side-menu__item @if (Route::is('admin.blog')) active @endif">Blog</a>
                             </li>
+                            <li class="slide">
+                                <a href="{{ route('admin.category') }}"
+                                    class="side-menu__item @if (Route::is('admin.category')) active @endif">Catégorie</a>
+                            </li>
                         </ul>
-                    </li> --}}
+                    </li>
                     @php
                         $cl = Route::is('admin.contact') ? 'active open' : '';
                     @endphp

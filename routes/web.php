@@ -6,8 +6,10 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\UserController;
 use App\Models\Baniere;
+use App\Models\Categoriepublication;
 use App\Models\Category;
 use App\Models\Pay;
+use App\Models\Publication;
 use App\Models\User;
 use App\Models\Zonesante;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +19,16 @@ Route::get('/', function () {
     $docta = User::where('user_role', 'nurse')->inRandomOrder()->take(9)->get();
     return view('index', compact('banner', 'docta'));
 })->name('home');
+
+Route::get('blog', function () {
+    $categorie = Categoriepublication::orderBy('categorie')->withCount('publications')->get();
+    $item = request('item');
+    $pub = Publication::where('id', $item)->first();
+    if ($pub) {
+        return view('blog-details', compact('pub'));
+    }
+    return view('blog', compact('categorie'));
+})->name('blog');
 
 Route::get('/login', function () {
     if (Auth::check()) {
@@ -59,6 +71,7 @@ Route::middleware('auth')->group(function () {
             Route::get('app-contact',  'contact')->name('admin.contact');
             Route::get('app-hero',  'baniere')->name('admin.baniere');
             Route::get('blog',  'blog')->name('admin.blog');
+            Route::get('category',  'category')->name('admin.category');
             Route::get('payment',  'payment')->name('admin.payment');
         });
     });

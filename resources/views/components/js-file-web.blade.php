@@ -15,7 +15,6 @@
 <script src="{{ asset('ressources/js/script.js') }}"></script>
 <script>
     $('#bcont').click(function() {
-        console.log('ff');
         $("html, body").animate({
                 scrollTop: $('#contact').offset().top
             },

@@ -12,6 +12,7 @@ use App\Http\Controllers\API\FacultAPIController;
 use App\Http\Controllers\API\PaymentAPIController;
 use App\Http\Controllers\API\ProductAPIController;
 use App\Http\Controllers\API\ProjectAPIController;
+use App\Http\Controllers\API\PublicationAPIController;
 use App\Http\Controllers\API\StructureSanteAPIController;
 use App\Http\Controllers\API\TaskAPIController;
 use App\Http\Controllers\API\TauxAPIController;
@@ -33,6 +34,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('structuresante', StructureSanteAPIController::class);
     Route::resource('baniere', BaniereAPIController::class)->only(['index', 'store', 'destroy']);
     Route::post('baniere/{baniere}', [BaniereAPIController::class, 'update']);
+    Route::resource('category', CategoryAPIController::class);
+    Route::resource('publication', PublicationAPIController::class)->only(['index', 'store', 'destroy']);
+    Route::post('publication/{publication}', [PublicationAPIController::class, 'update']);
 
     Route::resource('dash', DashAPIController::class)->only(['index']);
     Route::post('appconfig', [AppController::class, 'appconfig'])->name('appconfig');
@@ -48,3 +52,5 @@ Route::get('pub/structuresante', [StructureSanteAPIController::class, 'index2'])
 
 Route::post('contact', [AppController::class, 'contact'])->name('contact');
 Route::post('search', [AppController::class, 'search'])->name('search');
+
+Route::get('blog', [AppController::class, 'blog'])->name('api.blog');

@@ -12,6 +12,7 @@ use App\Models\Pay;
 use App\Models\Pending;
 use App\Models\Product;
 use App\Models\Profil;
+use App\Models\Publication;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -342,6 +343,24 @@ class AppController extends Controller
         }
         $data->orderBy('name');
         $data = $data->get();
+
+        return $data;
+    }
+
+    function blog()
+    {
+        $t = Publication::orderBy('datemaj', 'desc')->orderBy('id', 'desc')->with(['user', 'categoriepublication'])->paginate(5);
+        $tab = [];
+        foreach ($t->getCollection() as $el) {
+            $o = (object)$el->toArray();
+            $o->date = $el->date?->format('d-m-Y H:i:s');
+            $o->datemaj = $el->datemaj?->format('d-m-Y H:i:s');
+            $o->image = asset('storage/' . $el->image);
+            $tab[] = $o;
+        }
+
+        $data = $t->toArray();
+        $data['data'] = $tab;
 
         return $data;
     }

@@ -8,6 +8,7 @@ define('API_HEADEARS',  [
 ]);
 
 use App\Models\Appconfig;
+use App\Models\Categoriepublication;
 use App\Models\Config;
 use App\Models\Pay;
 use App\Models\Transaction;
@@ -30,6 +31,11 @@ function defaultdata()
     $u = User::where('user_role', 'admin')->first();
     if (!$u) {
         User::create(['name' => 'Admin', 'email' => 'admin@admin.admin', 'user_role' => 'admin', 'password' => Hash::make('admin@2024')]);
+    }
+
+    $u = Categoriepublication::first();
+    if (!$u) {
+        Categoriepublication::create(['categorie' => 'Santé']);
     }
 }
 

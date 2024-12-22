@@ -13,50 +13,6 @@
 <body>
     <div class="page-wrapper">
         <div class="preloader"></div>
-
-        <section class="header-uper" style="padding: 10px 0;">
-            <div class="container clearfix">
-                <div class="logo">
-                    <figure>
-                        <a href="{{ route('home') }}">
-                            @php
-                                $logo = @getappconfig()->logo;
-                                if (!$logo) {
-                                    $logo = 'ressources/images/logo.png';
-                                } else {
-                                    $logo = asset('storage/' . $logo);
-                                }
-                            @endphp
-                            <img src="{{ $logo }}" alt="" width="130" height="70px"
-                                style="object-fit: contain" />
-                        </a>
-                    </figure>
-                </div>
-                <div class="right-side">
-                    <ul class="contact-info">
-                        <li class="item">
-                            <div class="icon-box">
-                                <i class="fa fa-envelope-o"></i>
-                            </div>
-                            <strong>Email</strong>
-                            <br />
-                            <a href="#">
-                                <span>{{ @getappconfig()->email }}</span>
-                            </a>
-                        </li>
-                        <li class="item">
-                            <div class="icon-box">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <strong>Phone</strong>
-                            <br />
-                            <span>{{ @getappconfig()->tel }}</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
         <x-nav />
 
         <div class="hero-slider">
