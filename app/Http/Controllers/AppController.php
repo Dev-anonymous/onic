@@ -201,7 +201,6 @@ class AppController extends Controller
             ];
             if ('OUI' == $affilie) {
                 $rules['structuresante_id'] = 'required|exists:structuresante,id';
-                $rules['typestructure'] = 'sometimes|in:' . implode(',', gettypes());
             }
         } else if ('user' == $role) {
             $rules =  [

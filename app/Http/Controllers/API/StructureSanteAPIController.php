@@ -53,6 +53,7 @@ class StructureSanteAPIController extends Controller
 
         $rules =  [
             'airesante_id' => 'required|exists:airesante,id',
+            'type' => 'required|in:' . implode(',', gettypes()),
         ];
 
         if (request('file')) {
@@ -89,17 +90,24 @@ class StructureSanteAPIController extends Controller
             $exist = [];
             $added = [];
 
-            foreach ($sheet as $row) {
+            foreach ($sheet as $k => $row) {
                 $str = @$row[0];
                 $adre = @$row[1];
                 $cont = @$row[2];
+                $ty = @$row[3];
+                if (!in_array($ty, gettypes())) {
+                    $exist[] =  "Ligne " . ($k + 2) . " : Type : $ty invalide";
+                    continue;
+                }
                 if ($str) {
                     $ins = ['structure' => $str, 'airesante_id' => $airesante_id];
                     if (Structuresante::where($ins)->first()) {
                         $exist[] = $str;
                     } else {
+                        $ins['structure'] = ucfirst($str);
                         $ins['contact'] = $cont;
                         $ins['adresse'] = $adre;
+                        $ins['type'] = $ty;
                         Structuresante::create($ins);
                         $added[] = $str;
                     }
@@ -117,15 +125,15 @@ class StructureSanteAPIController extends Controller
 
             return ['success' => (bool) count($added), 'message' => $m];
         } else {
-        }
-
-        if (Structuresante::where(['structure' => $structure, 'airesante_id' => $airesante_id])->first()) {
-            return [
-                'message' => "La structure de santé \"$structure\" existe dans cette aire de santé."
-            ];
-        } else {
-            Structuresante::create($data);
-            return ['success' => true, 'message' => "La structure de santé a été créée."];
+            if (Structuresante::where(['structure' => $structure, 'airesante_id' => $airesante_id])->first()) {
+                return [
+                    'message' => "La structure de santé \"$structure\" existe dans cette aire de santé."
+                ];
+            } else {
+                $data['structure'] = ucfirst($data['structure']);
+                Structuresante::create($data);
+                return ['success' => true, 'message' => "La structure de santé a été créée."];
+            }
         }
     }
 
@@ -156,6 +164,7 @@ class StructureSanteAPIController extends Controller
             'structure' => 'required',
             'adresse' => 'sometimes',
             'contact' => 'sometimes',
+            'type' => 'required|in:' . implode(',', gettypes()),
         ];
 
         $validator = Validator::make(request()->all(), $rules);
@@ -166,6 +175,7 @@ class StructureSanteAPIController extends Controller
             ];
         }
         $data  = $validator->validated();
+        $data['structure'] = ucfirst($data['structure']);
         $structuresante->update($data);
 
         return ['success' => true, 'message' => 'Structure de santé mise à jour.'];

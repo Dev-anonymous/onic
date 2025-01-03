@@ -11,13 +11,14 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Structuresante
- * 
+ *
  * @property int $id
  * @property int $airesante_id
  * @property string|null $structure
  * @property string|null $adresse
  * @property string|null $contact
- * 
+ * @property string|null $type
+ *
  * @property Airesante $airesante
  * @property Collection|Profil[] $profils
  *
@@ -25,27 +26,28 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Structuresante extends Model
 {
-	protected $table = 'structuresante';
-	public $timestamps = false;
+    protected $table = 'structuresante';
+    public $timestamps = false;
 
-	protected $casts = [
-		'airesante_id' => 'int'
-	];
+    protected $casts = [
+        'airesante_id' => 'int'
+    ];
 
-	protected $fillable = [
-		'airesante_id',
-		'structure',
-		'adresse',
-		'contact'
-	];
+    protected $fillable = [
+        'airesante_id',
+        'structure',
+        'adresse',
+        'contact',
+        'type'
+    ];
 
-	public function airesante()
-	{
-		return $this->belongsTo(Airesante::class);
-	}
+    public function airesante()
+    {
+        return $this->belongsTo(Airesante::class);
+    }
 
-	public function profils()
-	{
-		return $this->hasMany(Profil::class);
-	}
+    public function profils()
+    {
+        return $this->hasMany(Profil::class);
+    }
 }

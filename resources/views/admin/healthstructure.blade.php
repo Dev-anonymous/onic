@@ -50,6 +50,7 @@
                                             <tr>
                                                 <th style="width:5px!important"><span ldr></span></th>
                                                 <th>Structre de santé</th>
+                                                <th>Type</th>
                                                 <th>Adresse</th>
                                                 <th>Contact</th>
                                                 <th>Détails</th>
@@ -94,6 +95,14 @@
                                 <label for="signin-username" class="form-label text-default">Nom de la structure</label>
                                 <input type="text" name="structure" class="form-control form-control-sm"
                                     id="signin-username">
+                            </div>
+                            <div class="col-xl-12 mb-3">
+                                <label for="signin-username" class="form-label text-default">Type</label>
+                                <select name="type" required="" class="form-control">
+                                    @foreach (gettypes() as $el)
+                                        <option value="{{ $el }}">{{ $el }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Adresse de la
@@ -144,6 +153,14 @@
                                     structure</label>
                                 <input required type="text" name="structure" class="form-control form-control-sm"
                                     id="signin-username">
+                            </div>
+                            <div class="col-xl-12 mb-3">
+                                <label for="signin-username" class="form-label text-default">Type</label>
+                                <select name="type" required="" class="form-control">
+                                    @foreach (gettypes() as $el)
+                                        <option value="{{ $el }}">{{ $el }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Adresse de la
@@ -219,6 +236,7 @@
                             html += `<tr>
                             <td>${i+1}</td>
                             <td>${el.structure}</td>
+                            <td>${el.type??''}</td>
                             <td>${el.adresse??''}</td>
                             <td>${el.contact??''}</td>
                             <td>
@@ -252,6 +270,7 @@
                             $('[name=structure]', mdl).val(data.structure);
                             $('[name=adresse]', mdl).val(data.adresse);
                             $('[name=contact]', mdl).val(data.contact);
+                            $('[name=type]', mdl).val(data.type);
                             mdl.modal('show');
                         });
                         table.DataTable({

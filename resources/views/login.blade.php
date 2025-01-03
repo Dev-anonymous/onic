@@ -214,22 +214,6 @@
                                             class="form-control">
                                         </select>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xl-12 mb-3">
-                                            <div class="col-xl-12 mb-3">
-                                                <label class="form-label text-default">
-                                                    Type de structure
-                                                </label>
-                                                <select name="typestructure" required class="form-control">
-                                                    <option value=""></option>
-                                                    @foreach (gettypes() as $el)
-                                                        <option value="{{ $el }}">{{ $el }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="col-xl-12 mb-3">
                                     <label for="signin-password" class="form-label text-default d-block">Mot de passe
@@ -456,12 +440,10 @@
                     selectZone.attr('required', true);
                     selectAire.attr('required', true);
                     selectStr.attr('required', true);
-                    $('[name=typestructure]').attr('required', true);
                 } else {
                     selectZone.attr('required', false);
                     selectAire.attr('required', false);
                     selectStr.attr('required', false);
-                    $('[name=typestructure]').attr('required', false);
                 }
             }
 
@@ -525,7 +507,7 @@
                         var str = '';
                         $(data.data).each(function(i, e) {
                             str += `
-                            <option value="${e.id}">${e.structure}</option>
+                            <option value="${e.id}">${e.structure} (${e.type})</option>
                             `;
                         });
                         selectStr.html(str);
