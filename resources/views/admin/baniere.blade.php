@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-12">
+                    <div class="col-xl-12 mb-3">
                         <div class="card custom-card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="card-title">Bannière d'accueil</div>
@@ -74,17 +74,17 @@
                     <form action="#" id="f-add">
                         <div class="modal-body text-start">
                             <input type="hidden" name="user_role" value="admin">
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Titre</label>
                                 <input required type="text" name="titre" class="form-control form-control-sm"
                                     id="signin-username" required placeholder="Titre" maxlength="100">
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Description</label>
                                 <textarea name="description" required class="form-control" id="" rows="2" placeholder="description"
                                     maxlength="255"></textarea>
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="text-area" class="form-label">Image</label>
                                 <input type="file" class="filepond1" required name="image"
                                     accept="image/png, image/jpeg" data-max-file-size="500KB" data-max-files="1">
@@ -112,17 +112,17 @@
                     <form action="#" id="f-edit">
                         <div class="modal-body text-start">
                             <input type="hidden" name="id">
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Titre</label>
                                 <input required type="text" name="titre" class="form-control form-control-sm"
                                     id="signin-username" required placeholder="Titre" maxlength="100">
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Description</label>
                                 <textarea name="description" required class="form-control" id="" rows="2" placeholder="description"
                                     maxlength="255"></textarea>
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="text-area" class="form-label">Image</label>
                                 <input type="file" class="filepond2" name="image"
                                     accept="image/png, image/jpeg" data-max-file-size="500KB" data-max-files="1">

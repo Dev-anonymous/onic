@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-12">
+                    <div class="col-xl-12 mb-3">
                         <div class="card custom-card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="card-title">Zone de santé</div>
@@ -74,7 +74,7 @@
                     </div>
                     <form action="#" id="f-add">
                         <div class="modal-body text-start">
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Zone de santé</label>
                                 <input required type="text" name="zonesante" class="form-control form-control-sm"
                                     id="signin-username">
@@ -104,7 +104,7 @@
                     <form action="#" id="f-edit">
                         <div class="modal-body text-start">
                             <input type="hidden" name="id">
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Zone de santé</label>
                                 <input required type="text" name="zonesante" class="form-control form-control-sm"
                                     id="signin-username">

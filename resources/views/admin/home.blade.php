@@ -150,7 +150,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <div class="card custom-card">
                                     <div class="card-header justify-content-between">
                                         <div class="card-title">
@@ -167,7 +167,7 @@
                     </div>
                     <div class="col-xxl-6 col-xl-12">
                         <div class="row">
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <div class="card custom-card">
                                     <div class="card-header justify-content-between">
                                         <div class="card-title">Statistiques de transaction</div>
@@ -177,7 +177,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <div class="card custom-card">
                                     <div class="card-header justify-content-between">
                                         <div class="card-title">

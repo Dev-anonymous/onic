@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-12">
+                    <div class="col-xl-12 mb-3">
                         <div class="card custom-card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="card-title">Structure de santé</div>
@@ -76,7 +76,7 @@
                     </div>
                     <form action="#" id="f-add">
                         <div class="modal-body text-start">
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Aire de santé</label>
                                 <select name="airesante_id" required="" class="form-control">
                                     @foreach ($aires as $el)
@@ -90,22 +90,31 @@
                                 <a href="{{ route('admin.healtharea') }}" class="btn btn-link my-2">Ajouter une
                                     aire</a>
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Nom de la structure</label>
-                                <input required type="text" name="structure" class="form-control form-control-sm"
+                                <input type="text" name="structure" class="form-control form-control-sm"
                                     id="signin-username">
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Adresse de la
                                     structure</label>
-                                <input required type="text" name="adresse" class="form-control form-control-sm"
+                                <input type="text" name="adresse" class="form-control form-control-sm"
                                     id="signin-username">
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Contact de la
                                     structure</label>
-                                <input required type="text" name="contact" class="form-control phone form-control-sm"
+                                <input type="text" name="contact" class="form-control phone form-control-sm"
                                     id="signin-username">
+                            </div>
+                            <div class="col-xl-12 mb-3 bg-gray-200 p-3">
+                                <label for="text-area" class="form-label">Ou importer un fichier Excel</label>
+                                <input type="file" class="filepond1" name="file" accept=".xls,.xlsx"
+                                    data-max-files="1">
+                                <a href="{{ asset('ModeleStructure.xlsx') }}" class="btn btn-link btn-sm">
+                                    <i class="bx bx-file"></i>
+                                    Fichier Modèle
+                                </a>
                             </div>
                             <div class="mt-2">
                                 <div id="rep"></div>
@@ -130,23 +139,23 @@
                     <form action="#" id="f-edit">
                         <div class="modal-body text-start">
                             <input type="hidden" name="id">
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Nom de la
                                     structure</label>
                                 <input required type="text" name="structure" class="form-control form-control-sm"
                                     id="signin-username">
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Adresse de la
                                     structure</label>
-                                <input required type="text" name="adresse" class="form-control form-control-sm"
+                                <input type="text" name="adresse" class="form-control form-control-sm"
                                     id="signin-username">
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label  text-default">Contact de la
                                     structure</label>
-                                <input required type="text" name="contact"
-                                    class="form-control phone form-control-sm" id="signin-username">
+                                <input type="text" name="contact" class="form-control phone form-control-sm"
+                                    id="signin-username">
                             </div>
                             <div class="mt-2">
                                 <div id="rep"></div>
@@ -189,12 +198,15 @@
     <x-datatable />
 
     <script src="{{ asset('assets/js/jquery.mask.min.js') }}"></script>
-
+    <script src="{{ asset('assets/libs/filepond/filepond.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/libs/filepond/filepond.min.css') }}">
     <script>
         $(document).ready(function() {
             $('.phone').mask('0000000000');
             var table = $('#table');
             table.DataTable();
+            pond1 = FilePond.create($('.filepond1')[0]);
+
 
             function getdata() {
                 $('span[ldr]').removeClass().addClass('bx bx-spin bx-loader bx-sm');
@@ -207,8 +219,8 @@
                             html += `<tr>
                             <td>${i+1}</td>
                             <td>${el.structure}</td>
-                            <td>${el.adresse}</td>
-                            <td>${el.contact}</td>
+                            <td>${el.adresse??''}</td>
+                            <td>${el.contact??''}</td>
                             <td>
                                 Aire de sante : ${el.airesante} <br>
                                 Infirmiers : ${el.infirmier}
@@ -272,12 +284,18 @@
                 var btn = $(':submit', form);
                 btn.attr('disabled', true);
                 btn.find('span').removeClass().addClass('bx bx-spin bx-loader');
-                var data = form.serialize();
+                var data = new FormData(this);
+                let pondFiles = pond1.getFiles();
+                for (var i = 0; i < pondFiles.length; i++) {
+                    data.append('file', pondFiles[i].file);
+                }
 
                 $.ajax({
                     type: 'post',
                     data: data,
                     url: '{{ route('structuresante.store') }}',
+                    contentType: false,
+                    processData: false,
                     success: function(r) {
                         if (r.success) {
                             btn.attr('disabled', false);

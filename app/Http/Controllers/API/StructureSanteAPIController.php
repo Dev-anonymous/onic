@@ -53,10 +53,15 @@ class StructureSanteAPIController extends Controller
 
         $rules =  [
             'airesante_id' => 'required|exists:airesante,id',
-            'structure' => 'required',
-            'adresse' => 'required',
-            'contact' => 'required',
         ];
+
+        if (request('file')) {
+            $rules['file'] = 'required|mimes:xls,xlsx';
+        } else {
+            $rules['structure'] = 'required';
+            $rules['adresse'] = 'sometimes';
+            $rules['contact'] = 'sometimes';
+        }
 
         $validator = Validator::make(request()->all(), $rules);
 
@@ -69,6 +74,50 @@ class StructureSanteAPIController extends Controller
 
         $airesante_id = request('airesante_id');
         $structure = request('structure');
+
+        if (request('file')) {
+            $file = request('file');
+            $path = $file->getPathName();
+
+            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($path);
+            $sheet = $spreadsheet->getActiveSheet()->toArray();
+            array_shift($sheet);
+            if (!count($sheet)) {
+                return ['success' => false, 'message' => "Le fichier ne contient pas de données à importer."];
+            }
+
+            $exist = [];
+            $added = [];
+
+            foreach ($sheet as $row) {
+                $str = @$row[0];
+                $adre = @$row[1];
+                $cont = @$row[2];
+                if ($str) {
+                    $ins = ['structure' => $str, 'airesante_id' => $airesante_id];
+                    if (Structuresante::where($ins)->first()) {
+                        $exist[] = $str;
+                    } else {
+                        $ins['contact'] = $cont;
+                        $ins['adresse'] = $adre;
+                        Structuresante::create($ins);
+                        $added[] = $str;
+                    }
+                }
+            }
+
+            $m = [];
+            if (count($added)) {
+                $m[] = count($added) .  " structure de santé créée(s) avec succès. ";
+            }
+
+            if (count($exist)) {
+                $m[] = "Ces structures ont été ignorées : " . implode(', ', $exist) . '';
+            }
+
+            return ['success' => (bool) count($added), 'message' => $m];
+        } else {
+        }
 
         if (Structuresante::where(['structure' => $structure, 'airesante_id' => $airesante_id])->first()) {
             return [
@@ -105,8 +154,8 @@ class StructureSanteAPIController extends Controller
 
         $rules =  [
             'structure' => 'required',
-            'adresse' => 'required',
-            'contact' => 'required',
+            'adresse' => 'sometimes',
+            'contact' => 'sometimes',
         ];
 
         $validator = Validator::make(request()->all(), $rules);

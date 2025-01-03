@@ -55,8 +55,12 @@ class DashAPIController extends Controller
                 $data['agemoyen'] = round(array_sum($ages) / count($ages)) . ' ans';
             } catch (\Throwable $th) {
             }
-            $data['plusage'] = max($ages) . ' ans';
-            $data['moinsage'] = min($ages) . ' ans';
+            $data['plusage'] = '-';
+            $data['moinsage'] = '-';
+            if (count($ages)) {
+                $data['plusage'] = max($ages) . ' ans';
+                $data['moinsage'] = min($ages) . ' ans';
+            }
 
             $st = [];
             foreach (gettypes() as $el) {

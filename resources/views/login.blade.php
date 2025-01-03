@@ -46,7 +46,7 @@
                                     <input required type="text" name="login" class="form-control "
                                         id="signin-username" placeholder="Email">
                                 </div>
-                                <div class="col-xl-12">
+                                <div class="col-xl-12 mb-3">
                                     <label for="signin-password" class="form-label text-default d-block">Mot de passe
                                         {{-- <a href="reset-password-basic.html" class="float-end text-danger">Forget password
                                         ?</a> --}}
@@ -133,7 +133,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xl-12">
+                                    <div class="col-xl-12 mb-3">
                                         <div class="col-xl-12 mb-3">
                                             <label class="form-label text-default">
                                                 Etat Civil
@@ -148,7 +148,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xl-12">
+                                    <div class="col-xl-12 mb-3">
                                         <div class="col-xl-12 mb-3">
                                             <label class="form-label text-default">
                                                 Date de naissance
@@ -215,7 +215,7 @@
                                         </select>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xl-12">
+                                        <div class="col-xl-12 mb-3">
                                             <div class="col-xl-12 mb-3">
                                                 <label class="form-label text-default">
                                                     Type de structure

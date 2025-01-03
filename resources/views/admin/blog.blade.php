@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-12">
+                    <div class="col-xl-12 mb-3">
                         <div class="card custom-card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="card-title">Article Blog</div>
@@ -61,7 +61,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-12" style="display: none" id="adddiv">
+                    <div class="col-xl-12 mb-3" style="display: none" id="adddiv">
                         <div class="card custom-card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="card-title">Nouvel article Blog</div>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-12" style="display: none" id="editdiv">
+                    <div class="col-xl-12 mb-3" style="display: none" id="editdiv">
                         <div class="card custom-card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="card-title">Modification article Blog</div>

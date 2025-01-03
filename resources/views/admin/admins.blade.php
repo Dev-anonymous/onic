@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-12">
+                    <div class="col-xl-12 mb-3">
                         <div class="card custom-card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="card-title">Comptes administrateurs</div>
@@ -76,23 +76,23 @@
                     <form action="#" id="f-add">
                         <div class="modal-body text-start">
                             <input type="hidden" name="user_role" value="admin">
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Nom</label>
                                 <input required type="text" name="name" class="form-control form-control-sm"
                                     id="signin-username" placeholder="Nom">
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Téléphone</label>
                                 <input required type="text" minlength="10" maxlength="10" name="phone"
                                     class="form-control form-control-sm phone" id="signin-username"
                                     placeholder="Téléphone, Ex: 099xxx">
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Email</label>
                                 <input required type="email" name="email" class="form-control form-control-sm"
                                     id="signin-username" placeholder="Email">
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="text-area" class="form-label">Image profil</label>
                                 <input type="file" class="filepond1" name="image" accept="image/png, image/jpeg"
                                     data-max-file-size="500KB" data-max-files="1">
@@ -132,23 +132,23 @@
                     <form action="#" id="f-edit">
                         <div class="modal-body text-start">
                             <input type="hidden" name="id">
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Nom</label>
                                 <input required type="text" name="name" class="form-control form-control-sm"
                                     id="signin-username" placeholder="Nom">
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Téléphone</label>
                                 <input required type="text" minlength="10" maxlength="10" name="phone"
                                     class="form-control form-control-sm phone" id="signin-username"
                                     placeholder="Téléphone, Ex: 099xxx">
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="signin-username" class="form-label text-default">Email</label>
                                 <input required type="email" name="email" class="form-control form-control-sm"
                                     id="signin-username" placeholder="Email">
                             </div>
-                            <div class="col-xl-12">
+                            <div class="col-xl-12 mb-3">
                                 <label for="text-area" class="form-label">Image profil</label>
                                 <input type="file" class="filepond2" name="image"
                                     accept="image/png, image/jpeg" data-max-file-size="500KB" data-max-files="1">
