@@ -64,7 +64,9 @@ class DashAPIController extends Controller
 
             $st = [];
             foreach (gettypes() as $el) {
-                $st[$el] = Profil::where('typestructure', $el)->count();
+                $st[$el] = Profil::whereHas('structuresante', function ($q) use ($el) {
+                    $q->where('type', $el);
+                })->count();
             }
             $data['appartenance'] = $st;
         }
