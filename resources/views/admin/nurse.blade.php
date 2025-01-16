@@ -145,7 +145,7 @@
                                 Date de naisssance : ${user.profil?.datenaissance??'-'} <br>
                                 Age : ${user.profil?.age??'-'} <br>
                                 Etat Civil : ${user.profil?.etatcivil??'-'} <br>
-                                <a target='_blank' href="${user.profil?.fichier ??'-'}" class='btn p-0 btn-link' ><i class='bx bxs-file-pdf'></i> Fichier</a>
+                                <a target='_blank' href="${user.profil?.fichier ??'-'}" class='btn p-0 btn-link ${user.profil?.fichier?'':'d-none'}' ><i class='bx bxs-file-pdf'></i> Fichier</a>
                             </td>
                             <td>
                                 Numéro d'ordre : ${user.profil?.numeroordre ??'-'} <br>

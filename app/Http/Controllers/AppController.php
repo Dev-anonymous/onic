@@ -193,10 +193,10 @@ class AppController extends Controller
                 'genre' => 'required|in:M,F',
                 'niveauetude' => 'required|in:' . implode(',', getlevel()),
                 'etatcivil' => 'required|in:' . implode(',', getstate()),
-                'numeroordre' => 'sometimes|string|max:200',
+                'numeroordre' => 'sometimes|max:200',
                 'adresse' => 'required|string|max:200',
-                'file' => 'required|mimes:pdf|max:1200',
-                'image' => 'required|mimes:png,jpg,jpeg|max:1200',
+                'file' => 'sometimes|mimes:pdf',
+                'image' => 'sometimes|mimes:png,jpg,jpeg',
                 'datenaissance' => 'required|date',
             ];
             if ('OUI' == $affilie) {
@@ -226,10 +226,14 @@ class AppController extends Controller
         $data['user_role'] =  $role;
 
         DB::transaction(function () use ($data) {
-            $data['image'] = request('image')->store('image', 'public');
+            if (request('image')) {
+                $data['image'] = request('image')->store('image', 'public');
+            }
             $user = User::create($data);
             $data['users_id'] = $user->id;
-            $data['fichier'] = request('file')->store('driver', 'public');
+            if (request('file')) {
+                $data['fichier'] = request('file')->store('driver', 'public');
+            }
             Profil::create($data);
             Auth::login($user, true);
         });

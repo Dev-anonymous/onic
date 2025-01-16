@@ -44,7 +44,7 @@ class UserAPIController extends Controller
                     $pro['structure'] = $profil->structuresante?->structure ?? '';
                     $pro['zone'] = $profil->structuresante?->airesante?->zonesante?->zonesante ?? '';
                     $pro['aire'] = $profil->structuresante?->airesante?->airesante ?? '';
-                    $pro['fichier'] = asset('storage/' . $profil->fichier);
+                    $pro['fichier'] = $profil->fichier ? asset('storage/' . $profil->fichier) : null;
                     $pro['niveauetude'] = $profil->niveauetude;
                     $pro['etatcivil'] = $profil->etatcivil;
                 }

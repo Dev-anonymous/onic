@@ -160,7 +160,7 @@
                                 </div>
                                 <div class="col-xl-12 mb-3">
                                     <label for="signin-username" class="form-label text-default">
-                                        Numéro d'ordre</label>
+                                        Numéro d'ordre (optionnel)</label>
                                     <input name="numeroordre" class="form-control " id="signin-username"
                                         placeholder="Numéro d'ordre">
                                 </div>
@@ -227,15 +227,15 @@
                                                 class="ri-eye-line align-middle"></i></button>
                                     </div>
                                     <div class="col-xl-12 mb-3">
-                                        <label for="text-area" class="form-label">Diplôme de médecine (.PDF)</label>
-                                        <input type="file" class="filepond1" name="file" required
-                                            accept=".pdf" data-max-file-size="1024KB" data-max-files="1">
+                                        <label for="text-area" class="form-label">Diplôme de médecine (.PDF) (optionnel)</label>
+                                        <input type="file" class="filepond1" name="file"
+                                            accept=".pdf" data-max-files="1">
                                     </div>
                                     <div class="col-xl-12 mb-3">
                                         <label for="text-area" class="form-label">Image de profil (png, jpg,
-                                            jpg)</label>
-                                        <input type="file" class="filepond2" name="image" required
-                                            accept=".png,.jpg,.jpeg" data-max-file-size="1024KB" data-max-files="1">
+                                            jpg) (optionnel)</label>
+                                        <input type="file" class="filepond2" name="image"
+                                            accept=".png,.jpg,.jpeg" data-max-files="1">
                                     </div>
                                     <div class="mt-2">
                                         <div id="rep"></div>
