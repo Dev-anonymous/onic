@@ -246,6 +246,84 @@ class AppController extends Controller
         ];
     }
 
+
+    function updatepass()
+    {
+        $validator = Validator::make(request()->all(), [
+            'password' => 'required|string',
+            'npassword' => 'required|string|min:6|same:cpassword',
+            'cpassword' => 'required|string|min:6|',
+        ], ['npassword.same' => "Les deux mot de passe sont différents."]);
+
+
+        if ($validator->fails()) {
+            return [
+                'message' => implode(" ", $validator->errors()->all())
+            ];
+        }
+
+        $cp = request()->password;
+        $np = request()->npassword;
+        $user = auth()->user();
+
+        if (!(Hash::check($cp, $user->password))) {
+            return [
+                'message' => 'Le mot de passe actuel que vous avez saisi est incorrect.'
+            ];
+        }
+
+        User::where('id', $user->id)->update(['password' => Hash::make($np)]);
+        return [
+            'success' => true,
+            'message' => 'Votre mot de passe a été modifié.',
+        ];
+    }
+
+    function updateinfo()
+    {
+        $user = auth()->user();
+        $rules =  [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'phone' => 'required|unique:users,phone,' . $user->id,
+            'genre' => 'required|in:M,F',
+            'niveauetude' => 'required|in:' . implode(',', getlevel()),
+            'etatcivil' => 'required|in:' . implode(',', getstate()),
+            'numeroordre' => 'sometimes|max:200',
+            'adresse' => 'required|string|max:200',
+            'file' => 'sometimes|mimes:pdf',
+            'image' => 'sometimes|mimes:png,jpg,jpeg',
+            'datenaissance' => 'required|date',
+        ];
+        $validator = Validator::make(request()->all(), $rules);
+
+        if ($validator->fails()) {
+            return [
+                'message' => implode(" ", $validator->errors()->all())
+            ];
+        }
+
+        $data  = $validator->validated();
+        DB::transaction(function () use ($data, $user) {
+            $profil = $user->profils->first();
+            if (request('image')) {
+                $data['image'] = request('image')->store('image', 'public');
+                File::delete('storage/' . $user->image);
+            }
+            $user->update($data);
+            if (request('file')) {
+                $data['fichier'] = request('file')->store('driver', 'public');
+                File::delete('storage/' . $profil->fichier);
+            }
+            $profil->update($data);
+        });
+
+        return [
+            'success' => true,
+            'message' => "Votre profil a été mis à jour."
+        ];
+    }
+
     function contact()
     {
         $rules =  [

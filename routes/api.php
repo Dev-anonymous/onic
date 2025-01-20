@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('users', UserAPIController::class)->only(['index', 'store', 'destroy']);
     Route::post('users/{user}', [UserAPIController::class, 'update']);
+    Route::post('update-pass', [AppController::class, 'updatepass'])->name('updatepass');
+    Route::post('update-info', [AppController::class, 'updateinfo'])->name('updateinfo');
 
     Route::resource('paiement', PaymentAPIController::class);
     Route::resource('transaction', TransactionAPIController::class)->only(['index']);
