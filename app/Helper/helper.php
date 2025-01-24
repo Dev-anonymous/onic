@@ -169,7 +169,7 @@ function getlevel()
     return [
         'A0',
         'A1',
-        'A3',
+        'A2',
         'A3',
         'Doctorat',
     ];
