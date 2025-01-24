@@ -227,7 +227,7 @@
                                                 class="ri-eye-line align-middle"></i></button>
                                     </div>
                                     <div class="col-xl-12 mb-3">
-                                        <label for="text-area" class="form-label">Diplôme de médecine (.PDF) (optionnel)</label>
+                                        <label for="text-area" class="form-label">Diplôme/Attestation (.PDF) (optionnel)</label>
                                         <input type="file" class="filepond1" name="file"
                                             accept=".pdf" data-max-files="1">
                                     </div>
