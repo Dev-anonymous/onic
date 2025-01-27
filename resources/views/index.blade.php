@@ -896,7 +896,7 @@
 
     <div class="modal fade" id="mdlwelcome">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content modal-content-demo">
+            <div class="modal-content">
                 <div class="modal-body">
                     <h5 class="text-center">TUTORIEL APPLICATION ONIC URBAIN LUBUMBASHI</h5>
                     <hr>
@@ -912,7 +912,7 @@
                             DÉJÀ
                             FONCTIONNEL A 30% ET QUI NOUS PERMET DE POURSUIVRE NOTRE PREMIER OBJECTIFS : <br>
                             - LA MAITRISE DES EFFECTIFS DES INFIRMIERS DE LUBUMBASHI. <br>
-                            <span class="badge">L'APPLICATION DONT LE LIEN EST A PARTAGER A TOUS LES INFIRMIERS DE
+                            <span class="text-danger">L'APPLICATION DONT LE LIEN EST A PARTAGER A TOUS LES INFIRMIERS DE
                                 LUBUMBASHI.</span>
                         </li>
                         <br>
