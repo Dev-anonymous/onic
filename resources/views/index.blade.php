@@ -912,7 +912,8 @@
                             DÉJÀ
                             FONCTIONNEL A 30% ET QUI NOUS PERMET DE POURSUIVRE NOTRE PREMIER OBJECTIFS : <br>
                             - LA MAITRISE DES EFFECTIFS DES INFIRMIERS DE LUBUMBASHI. <br>
-                            <span class="text-danger">L'APPLICATION DONT LE LIEN EST A PARTAGER A TOUS LES INFIRMIERS DE
+                            <span class="text-danger">L'APPLICATION DONT LE LIEN EST A PARTAGER A TOUS LES INFIRMIERS
+                                DE
                                 LUBUMBASHI.</span>
                         </li>
                         <br>
