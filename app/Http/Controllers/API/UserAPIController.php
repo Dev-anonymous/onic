@@ -36,6 +36,7 @@ class UserAPIController extends Controller
                 $pro = [];
                 if ($profil) {
                     $pro['datenaissance'] = $profil->datenaissance?->format('d-m-Y');
+                    $pro['datenaissance1'] = $profil->datenaissance?->format('Y-m-d');
                     $pro['age'] = (new Carbon($profil->datenaissance))->diffInYears() . ' ans';
                     $pro['genre'] = $profil->genre;
                     $pro['niveauetude'] = $profil->niveauetude;

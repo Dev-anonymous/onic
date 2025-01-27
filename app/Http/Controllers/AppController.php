@@ -282,6 +282,14 @@ class AppController extends Controller
     function updateinfo()
     {
         $user = auth()->user();
+        if ($user->user_role == 'admin') {
+            $id = request('id');
+            $user = User::where(['user_role' => 'nurse', 'id' => $id])->first();
+            if (!$user) {
+                abort(401, 'uhm');
+            }
+        }
+
         $rules =  [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
@@ -304,6 +312,8 @@ class AppController extends Controller
         }
 
         $data  = $validator->validated();
+        unset($data['id']);
+        
         DB::transaction(function () use ($data, $user) {
             $profil = $user->profils->first();
             if (request('image')) {
@@ -320,7 +330,7 @@ class AppController extends Controller
 
         return [
             'success' => true,
-            'message' => "Votre profil a été mis à jour."
+            'message' => "Le profil a été mis à jour."
         ];
     }
 
