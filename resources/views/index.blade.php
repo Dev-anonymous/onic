@@ -840,9 +840,9 @@
                     <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12" id="contact">
                         <div class="contact-area">
                             <div class="section-title text-center">
-                                <h3>
+                                <h4>
                                     Nous contacter
-                                </h3>
+                                </h4>
                             </div>
                             <form action="#" id="fcont" class="default-form contact-form">
                                 <div class="row">
@@ -894,6 +894,70 @@
         <x-footer-web />
     </div>
 
+    <div class="modal fade" id="mdlwelcome">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-body">
+                    <h5 class="text-center">TUTORIEL APPLICATION ONIC URBAIN LUBUMBASHI</h5>
+                    <hr>
+                    <ul>
+                        <li>1. SALUTATIONS CONFRATERNELLES A TOUS LES INFIRMIERS ET INFIRMIERES DE LA VILLE DE
+                            LUBUMBASHI.
+                            EN PRESIDENT AUX DESTINES DU CONSEIL URBAIN DE L'ONIC - LUBUMBASHI, NOUS AVONS FIXE 4
+                            OBJECTIFS
+                            GENERAUX.
+                            POUR Y PARVENIR, NOUS AVONS MIS LES MOYENS AFIN DE NOUS DOTER D'UN OUTIL INFORMATISE QUI EST
+                            DÉJÀ
+                            FONCTIONNEL A 30% ET QUI NOUS PERMET DE POURSUIVRE NOTRE PREMIER OBJECTIFS :
+                            -LA MAITRISE DES EFFECTIFS DES INFIRMIERS DE LUBUMBASHI.
+                            <span class="badge">L'APPLICATION DONT LE LIEN EST A PARTAGER A TOUS LES INFIRMIERS DE
+                                LUBUMBASHI.</span>
+                        </li>
+                        <li>
+                            2. CE TUTORIEL EXPLIQUE LA PROCEDURE DE CREATION DE VOTRE COMPTE ET VOTRE ENREGISTREMENT
+                            DANS LA
+                            BASE DES DONNEES.
+                            -DOIVENT S'ENREGISTRER TOUS LES INFIRMIERS AVEC OU SANS NUMERO DE L'ONIC.
+                            -APRES L'ENREGISTREMENT, CEUX N'AYANT PAS DE NUMEROS DE L'ONIC, DONC LES NON INSCRITS AU
+                            TABLEAU DE
+                            L'ORDRE RECEVRONT DES INVITATIONS POUR FINALISER LA PROCEDURE D'OBTENTION DES NUMERO ET DES
+                            CARTES.
+                        </li>
+                        <li>
+                            3. CEUX D'ENTRE VOUS QUI N'ARRIVENT PAS A S'ENREGISTRER, SOLLICITEZ L'ASSISTANCE
+                            DE VOS COLLEGUES OU DU PRESIDENT SECTIONNAIRE DE VOTRE ZONE DE SANTE. (SSP).
+                        </li>
+                    </ul>
+                    <hr>
+
+                    <ul>
+                        <li>1. OUVREZ UN NAVIGATEUR COMME GOOGLE CHROME.</li>
+                        <li>2. DANS LA BARRE DE RECHERCHE : SAISISSEZ : ONICRDCURBAIN.ORG</li>
+                        <li>3. DANS LA PAGE D'ACCEUIL : CLIQUER SUR LES 3 BARRES QUI SONT AU COIN SUPERIEUR DROIT PUIS
+                            SUR
+                            CONNEXION</li>
+                        <li>4. CLIQUE SUR CRÉER UN COMPTE.</li>
+                        <li>5. REMPLISSEZ LE FOURMULAIRE.</li>
+                        <li>6. POUR OUVRIR VOTRE COMPTE, REPRENDRE LA PROCEDURE EN VOUS CONNECTANT AVEC SOIT VOTRE
+                            NUMERO DE
+                            TELEPHONE (WATSP) SOIT VOTRE ADRESSE Email ET VO5TRE MOT DE PASS (8 CARACTERES=
+                            LETTRE+CHIFFRE+CARACTER SPECIAUX).</li>
+                    </ul>
+
+                    <p class="text-center">
+                        <b>PONYO KABEMBA Benjamin</b> <br>
+                        <b> PRESIDENT ONIC-LUBUMBASHI</b>
+                    </p>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-sm" data-dismiss="modal" type="button">D'ACCORD</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <x-js-file-web />
     <script src="{{ asset('assets/phone/intlTelInput.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('assets/phone/intlTelInput.css') }}">
@@ -904,6 +968,17 @@
     </style>
     <script src="{{ asset('assets/js/jquery.mask.min.js') }}"></script>
     <script>
+        var i = Number(localStorage.getItem('i'));
+        var wmdl = $('#mdlwelcome');
+        if (i < 3) {
+            wmdl.modal('show');
+        }
+
+        wmdl.on('hide.bs.modal', function() {
+            // var i = Number(localStorage.getItem('i')) + 1;
+            // localStorage.setItem('i', i);
+        })
+
         $('.phone').mask('0000000000000000');
         var input = document.querySelector("#phone");
         var iti = intlTelInput(input, {
