@@ -901,18 +901,21 @@
                     <h5 class="text-center">TUTORIEL APPLICATION ONIC URBAIN LUBUMBASHI</h5>
                     <hr>
                     <ul>
-                        <li>1. SALUTATIONS CONFRATERNELLES A TOUS LES INFIRMIERS ET INFIRMIERES DE LA VILLE DE
+                        <li>
+                            1. SALUTATIONS CONFRATERNELLES A TOUS LES INFIRMIERS ET INFIRMIERES DE LA
+                            VILLE DE
                             LUBUMBASHI.
                             EN PRESIDENT AUX DESTINES DU CONSEIL URBAIN DE L'ONIC - LUBUMBASHI, NOUS AVONS FIXE 4
                             OBJECTIFS
                             GENERAUX.
                             POUR Y PARVENIR, NOUS AVONS MIS LES MOYENS AFIN DE NOUS DOTER D'UN OUTIL INFORMATISE QUI EST
                             DÉJÀ
-                            FONCTIONNEL A 30% ET QUI NOUS PERMET DE POURSUIVRE NOTRE PREMIER OBJECTIFS :
-                            -LA MAITRISE DES EFFECTIFS DES INFIRMIERS DE LUBUMBASHI.
+                            FONCTIONNEL A 30% ET QUI NOUS PERMET DE POURSUIVRE NOTRE PREMIER OBJECTIFS : <br>
+                            - LA MAITRISE DES EFFECTIFS DES INFIRMIERS DE LUBUMBASHI. <br>
                             <span class="badge">L'APPLICATION DONT LE LIEN EST A PARTAGER A TOUS LES INFIRMIERS DE
                                 LUBUMBASHI.</span>
                         </li>
+                        <br>
                         <li>
                             2. CE TUTORIEL EXPLIQUE LA PROCEDURE DE CREATION DE VOTRE COMPTE ET VOTRE ENREGISTREMENT
                             DANS LA
@@ -923,10 +926,12 @@
                             L'ORDRE RECEVRONT DES INVITATIONS POUR FINALISER LA PROCEDURE D'OBTENTION DES NUMERO ET DES
                             CARTES.
                         </li>
+                        <br>
                         <li>
                             3. CEUX D'ENTRE VOUS QUI N'ARRIVENT PAS A S'ENREGISTRER, SOLLICITEZ L'ASSISTANCE
                             DE VOS COLLEGUES OU DU PRESIDENT SECTIONNAIRE DE VOTRE ZONE DE SANTE. (SSP).
                         </li>
+                        <br>
                     </ul>
                     <hr>
 
