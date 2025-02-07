@@ -91,144 +91,144 @@
         </div>
 
 
-        <section class="cta">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="cta-block">
-                            <div class="emmergency item">
-                                <i class="fa fa-phone"></i>
-                                <h2>Emegency Cases</h2>
-                                <a href="#">1-800-700-6200</a>
-                                <p>
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                </p>
-                            </div>
-                            <div class="top-doctor item">
-                                <i class="fa fa-stethoscope"></i>
-                                <h2>24 Hour Service</h2>
-                                <p>
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    Inventore dignissimos officia dicta suscipit vel eum
-                                </p>
-                                <a href="#" class="btn btn-main">Read more</a>
-                            </div>
-                            <div class="working-time item">
-                                <i class="fa fa-hourglass-o"></i>
-                                <h2>Working Hours</h2>
-                                <ul class="w-hours">
-                                    <li>Mon - Fri - <span>8:00 - 17:00</span></li>
-                                    <li>Mon - Fri - <span>8:00 - 17:00</span></li>
-                                    <li>Mon - Fri - <span>8:00 - 17:00</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+{{--        <section class="cta">--}}
+{{--            <div class="container">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-md-12">--}}
+{{--                        <div class="cta-block">--}}
+{{--                            <div class="emmergency item">--}}
+{{--                                <i class="fa fa-phone"></i>--}}
+{{--                                <h2>Emegency Cases</h2>--}}
+{{--                                <a href="#">1-800-700-6200</a>--}}
+{{--                                <p>--}}
+{{--                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                            <div class="top-doctor item">--}}
+{{--                                <i class="fa fa-stethoscope"></i>--}}
+{{--                                <h2>24 Hour Service</h2>--}}
+{{--                                <p>--}}
+{{--                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.--}}
+{{--                                    Inventore dignissimos officia dicta suscipit vel eum--}}
+{{--                                </p>--}}
+{{--                                <a href="#" class="btn btn-main">Read more</a>--}}
+{{--                            </div>--}}
+{{--                            <div class="working-time item">--}}
+{{--                                <i class="fa fa-hourglass-o"></i>--}}
+{{--                                <h2>Working Hours</h2>--}}
+{{--                                <ul class="w-hours">--}}
+{{--                                    <li>Mon - Fri - <span>8:00 - 17:00</span></li>--}}
+{{--                                    <li>Mon - Fri - <span>8:00 - 17:00</span></li>--}}
+{{--                                    <li>Mon - Fri - <span>8:00 - 17:00</span></li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
 
-        <section class="feature-section section bg-gray p-0">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-xs-12">
-                        <div class="image-content">
-                            <div class="section-title text-center">
-                                <h3>
-                                    Consultez
-                                    <span>les meilleurs</span>
-                                </h3>
-                                <p>
-                                    Nous sommes déterminés à simplifier la recherche et la mise en relation des patients
-                                    avec des infirmiers qualifiés. <br> Notre objectif est de rendre le processus de
-                                    soins plus accessible et efficace. <br>La plateforme incontournable pour connecter
-                                    les
-                                    infirmiers et les patients
-                                </p>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="item">
-                                        <div class="icon-box">
-                                            <figure>
-                                                <a href="#">
-                                                    <img src="{{ asset('ressources/images/resource/1.png') }}"
-                                                        alt="" />
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <h6>Accès rapide</h6>
-                                        <p>
-                                            aux infirmiers qualifiés.
-                                            Notre plateforme regroupe une vaste communauté d'infirmiers permanents,
-                                            permettant aux patients de trouver facilement le professionnel de santé le
-                                            plus adapté à leurs besoins.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="item">
-                                        <div class="icon-box">
-                                            <figure>
-                                                <a href="#">
-                                                    <img src="{{ asset('ressources/images/resource/2.png') }}"
-                                                        alt="" />
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <h6>Recherche simplifiée</h6>
-                                        <p>
-                                            Utilisez notre fonction de recherche intuitive pour filtrer les infirmiers
-                                            par spécialité, localisation, et disponibilités, afin de trouver exactement
-                                            ce que vous recherchez.
-                                            La Plateforme de Regroupement des Infirmiers Permanents a pour but de
-                                            faciliter la mise en relation entre les infirmiers permanents et les
-                                            patients.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="item">
-                                        <div class="icon-box">
-                                            <figure>
-                                                <a href="#">
-                                                    <img src="{{ asset('ressources/images/resource/3.png') }}"
-                                                        alt="" />
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <h6>Actualités du Secteur</h6>
-                                        <p>
-                                            Restez informé des dernières actualités et évolutions dans le monde de la
-                                            santé et des soins infirmiers grâce à notre section d'actualités
-                                            régulièrement mise à jour.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="item">
-                                        <div class="icon-box">
-                                            <figure>
-                                                <a href="#">
-                                                    <img src="{{ asset('ressources/images/resource/4.png') }}"
-                                                        alt="" />
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <h6>Disponibilité Flexibles</h6>
-                                        <p>
-                                            Les infirmiers peuvent gérer leurs horaires de
-                                            disponibilité en temps réel, permettant ainsi aux patients de choisir un
-                                            créneau qui leur convient.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+{{--        <section class="feature-section section bg-gray p-0">--}}
+{{--            <div class="container">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-sm-12 col-xs-12">--}}
+{{--                        <div class="image-content">--}}
+{{--                            <div class="section-title text-center">--}}
+{{--                                <h3>--}}
+{{--                                    Consultez--}}
+{{--                                    <span>les meilleurs</span>--}}
+{{--                                </h3>--}}
+{{--                                <p>--}}
+{{--                                    Nous sommes déterminés à simplifier la recherche et la mise en relation des patients--}}
+{{--                                    avec des infirmiers qualifiés. <br> Notre objectif est de rendre le processus de--}}
+{{--                                    soins plus accessible et efficace. <br>La plateforme incontournable pour connecter--}}
+{{--                                    les--}}
+{{--                                    infirmiers et les patients--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-sm-6">--}}
+{{--                                    <div class="item">--}}
+{{--                                        <div class="icon-box">--}}
+{{--                                            <figure>--}}
+{{--                                                <a href="#">--}}
+{{--                                                    <img src="{{ asset('ressources/images/resource/1.png') }}"--}}
+{{--                                                        alt="" />--}}
+{{--                                                </a>--}}
+{{--                                            </figure>--}}
+{{--                                        </div>--}}
+{{--                                        <h6>Accès rapide</h6>--}}
+{{--                                        <p>--}}
+{{--                                            aux infirmiers qualifiés.--}}
+{{--                                            Notre plateforme regroupe une vaste communauté d'infirmiers permanents,--}}
+{{--                                            permettant aux patients de trouver facilement le professionnel de santé le--}}
+{{--                                            plus adapté à leurs besoins.--}}
+{{--                                        </p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-sm-6">--}}
+{{--                                    <div class="item">--}}
+{{--                                        <div class="icon-box">--}}
+{{--                                            <figure>--}}
+{{--                                                <a href="#">--}}
+{{--                                                    <img src="{{ asset('ressources/images/resource/2.png') }}"--}}
+{{--                                                        alt="" />--}}
+{{--                                                </a>--}}
+{{--                                            </figure>--}}
+{{--                                        </div>--}}
+{{--                                        <h6>Recherche simplifiée</h6>--}}
+{{--                                        <p>--}}
+{{--                                            Utilisez notre fonction de recherche intuitive pour filtrer les infirmiers--}}
+{{--                                            par spécialité, localisation, et disponibilités, afin de trouver exactement--}}
+{{--                                            ce que vous recherchez.--}}
+{{--                                            La Plateforme de Regroupement des Infirmiers Permanents a pour but de--}}
+{{--                                            faciliter la mise en relation entre les infirmiers permanents et les--}}
+{{--                                            patients.--}}
+{{--                                        </p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-sm-6">--}}
+{{--                                    <div class="item">--}}
+{{--                                        <div class="icon-box">--}}
+{{--                                            <figure>--}}
+{{--                                                <a href="#">--}}
+{{--                                                    <img src="{{ asset('ressources/images/resource/3.png') }}"--}}
+{{--                                                        alt="" />--}}
+{{--                                                </a>--}}
+{{--                                            </figure>--}}
+{{--                                        </div>--}}
+{{--                                        <h6>Actualités du Secteur</h6>--}}
+{{--                                        <p>--}}
+{{--                                            Restez informé des dernières actualités et évolutions dans le monde de la--}}
+{{--                                            santé et des soins infirmiers grâce à notre section d'actualités--}}
+{{--                                            régulièrement mise à jour.--}}
+{{--                                        </p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-sm-6">--}}
+{{--                                    <div class="item">--}}
+{{--                                        <div class="icon-box">--}}
+{{--                                            <figure>--}}
+{{--                                                <a href="#">--}}
+{{--                                                    <img src="{{ asset('ressources/images/resource/4.png') }}"--}}
+{{--                                                        alt="" />--}}
+{{--                                                </a>--}}
+{{--                                            </figure>--}}
+{{--                                        </div>--}}
+{{--                                        <h6>Disponibilité Flexibles</h6>--}}
+{{--                                        <p>--}}
+{{--                                            Les infirmiers peuvent gérer leurs horaires de--}}
+{{--                                            disponibilité en temps réel, permettant ainsi aux patients de choisir un--}}
+{{--                                            créneau qui leur convient.--}}
+{{--                                        </p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
 
         {{-- <section class="service-tab-section section">
             <div class="outer-box clearfix">
@@ -477,155 +477,154 @@
             </div>
         </section> --}}
 
-        <section class="service-section bg-gray section p-0">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h3>
-                        Provided
-                        <span>Services</span>
-                    </h3>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem
-                        ipsum dolor sit amet. qui suscipit atque <br />
-                        fugiat officia corporis rerum eaque neque totam animi, sapiente
-                        culpa. Architecto!
-                    </p>
-                </div>
-                <div class="row items-container clearfix">
-                    <div class="item">
-                        <div class="inner-box">
-                            <div class="img_holder">
-                                <a href="service.html">
-                                    <img src="{{ asset('ressources/images/gallery/1.jpg') }}" alt="images"
-                                        class="img-responsive" />
-                                </a>
-                            </div>
-                            <div class="image-content text-center">
-                                <span>Better Service At Low Cost</span>
-                                <a href="service.html">
-                                    <h6>Dormitory</h6>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Suscipit, vero.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="inner-box">
-                            <div class="img_holder">
-                                <a href="service.html">
-                                    <img src="{{ asset('ressources/images/gallery/2.jpg') }}" alt="images"
-                                        class="img-responsive" />
-                                </a>
-                            </div>
-                            <div class="image-content text-center">
-                                <span>Better Service At Low Cost</span>
-                                <a href="service.html">
-                                    <h6>Germs Protection</h6>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Suscipit, vero.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="inner-box">
-                            <div class="img_holder">
-                                <a href="service.html">
-                                    <img src="{{ asset('ressources/images/gallery/3.jpg') }}" alt="images"
-                                        class="img-responsive" />
-                                </a>
-                            </div>
-                            <div class="image-content text-center">
-                                <span>Better Service At Low Cost</span>
-                                <a href="service.html">
-                                    <h6>Psycology</h6>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Suscipit, vero.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="inner-box">
-                            <div class="img_holder">
-                                <a href="service.html">
-                                    <img src="{{ asset('ressources/images/gallery/1.jpg') }}" alt="images"
-                                        class="img-responsive" />
-                                </a>
-                            </div>
-                            <div class="image-content text-center">
-                                <span>Better Service At Low Cost</span>
-                                <a href="service.html">
-                                    <h6>Dormitory</h6>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Suscipit, vero.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="inner-box">
-                            <div class="img_holder">
-                                <a href="service.html">
-                                    <img src="{{ asset('ressources/images/gallery/2.jpg') }}" alt="images"
-                                        class="img-responsive" />
-                                </a>
-                            </div>
-                            <div class="image-content text-center">
-                                <span>Better Service At Low Cost</span>
-                                <a href="service.html">
-                                    <h6>Germs Protection</h6>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Suscipit, vero.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="inner-box">
-                            <div class="img_holder">
-                                <a href="service.html">
-                                    <img src="{{ asset('ressources/images/gallery/3.jpg') }}" alt="images"
-                                        class="img-responsive" />
-                                </a>
-                            </div>
-                            <div class="image-content text-center">
-                                <span>Better Service At Low Cost</span>
-                                <a href="service.html">
-                                    <h6>Psycology</h6>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Suscipit, vero.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+{{--        <section class="service-section bg-gray section p-0">--}}
+{{--            <div class="container">--}}
+{{--                <div class="section-title text-center">--}}
+{{--                    <h3>--}}
+{{--                        Provided--}}
+{{--                        <span>Services</span>--}}
+{{--                    </h3>--}}
+{{--                    <p>--}}
+{{--                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem--}}
+{{--                        ipsum dolor sit amet. qui suscipit atque <br />--}}
+{{--                        fugiat officia corporis rerum eaque neque totam animi, sapiente--}}
+{{--                        culpa. Architecto!--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--                <div class="row items-container clearfix">--}}
+{{--                    <div class="item">--}}
+{{--                        <div class="inner-box">--}}
+{{--                            <div class="img_holder">--}}
+{{--                                <a href="service.html">--}}
+{{--                                    <img src="{{ asset('ressources/images/gallery/1.jpg') }}" alt="images"--}}
+{{--                                        class="img-responsive" />--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                            <div class="image-content text-center">--}}
+{{--                                <span>Better Service At Low Cost</span>--}}
+{{--                                <a href="service.html">--}}
+{{--                                    <h6>Dormitory</h6>--}}
+{{--                                </a>--}}
+{{--                                <p>--}}
+{{--                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                                    Suscipit, vero.--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="item">--}}
+{{--                        <div class="inner-box">--}}
+{{--                            <div class="img_holder">--}}
+{{--                                <a href="service.html">--}}
+{{--                                    <img src="{{ asset('ressources/images/gallery/2.jpg') }}" alt="images"--}}
+{{--                                        class="img-responsive" />--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                            <div class="image-content text-center">--}}
+{{--                                <span>Better Service At Low Cost</span>--}}
+{{--                                <a href="service.html">--}}
+{{--                                    <h6>Germs Protection</h6>--}}
+{{--                                </a>--}}
+{{--                                <p>--}}
+{{--                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                                    Suscipit, vero.--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="item">--}}
+{{--                        <div class="inner-box">--}}
+{{--                            <div class="img_holder">--}}
+{{--                                <a href="service.html">--}}
+{{--                                    <img src="{{ asset('ressources/images/gallery/3.jpg') }}" alt="images"--}}
+{{--                                        class="img-responsive" />--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                            <div class="image-content text-center">--}}
+{{--                                <span>Better Service At Low Cost</span>--}}
+{{--                                <a href="service.html">--}}
+{{--                                    <h6>Psycology</h6>--}}
+{{--                                </a>--}}
+{{--                                <p>--}}
+{{--                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                                    Suscipit, vero.--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="item">--}}
+{{--                        <div class="inner-box">--}}
+{{--                            <div class="img_holder">--}}
+{{--                                <a href="service.html">--}}
+{{--                                    <img src="{{ asset('ressources/images/gallery/1.jpg') }}" alt="images"--}}
+{{--                                        class="img-responsive" />--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                            <div class="image-content text-center">--}}
+{{--                                <span>Better Service At Low Cost</span>--}}
+{{--                                <a href="service.html">--}}
+{{--                                    <h6>Dormitory</h6>--}}
+{{--                                </a>--}}
+{{--                                <p>--}}
+{{--                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                                    Suscipit, vero.--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="item">--}}
+{{--                        <div class="inner-box">--}}
+{{--                            <div class="img_holder">--}}
+{{--                                <a href="service.html">--}}
+{{--                                    <img src="{{ asset('ressources/images/gallery/2.jpg') }}" alt="images"--}}
+{{--                                        class="img-responsive" />--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                            <div class="image-content text-center">--}}
+{{--                                <span>Better Service At Low Cost</span>--}}
+{{--                                <a href="service.html">--}}
+{{--                                    <h6>Germs Protection</h6>--}}
+{{--                                </a>--}}
+{{--                                <p>--}}
+{{--                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                                    Suscipit, vero.--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="item">--}}
+{{--                        <div class="inner-box">--}}
+{{--                            <div class="img_holder">--}}
+{{--                                <a href="service.html">--}}
+{{--                                    <img src="{{ asset('ressources/images/gallery/3.jpg') }}" alt="images"--}}
+{{--                                        class="img-responsive" />--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                            <div class="image-content text-center">--}}
+{{--                                <span>Better Service At Low Cost</span>--}}
+{{--                                <a href="service.html">--}}
+{{--                                    <h6>Psycology</h6>--}}
+{{--                                </a>--}}
+{{--                                <p>--}}
+{{--                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                                    Suscipit, vero.--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
 
         <section class="team-section section pb-0">
             <div class="container">
                 <div class="section-title text-center">
                     <h3>
-                        Nos
-                        <span>Docteurs</span>
+                        Infirmiers
                     </h3>
                 </div>
                 <div style="background: rgba(0,0,0,.05); border-radius: 10px; padding: 1rem;">
-                    <p class="m-0 p-0">Besoin de trouver un docteur ?</p>
+                    <p class="m-0 p-0">Recherche ?</p>
                     <small>
                         <i class="fa fa-info-circle"></i>
                         Vous pouvez rechercher par : nom du doctor, numéro de téléphone, zone de santé, ...
@@ -917,18 +916,19 @@
                                 LUBUMBASHI.</span>
                         </li>
                         <br>
-                        <li>
+
                             2. CE TUTORIEL EXPLIQUE LA PROCEDURE DE CREATION DE VOTRE COMPTE ET VOTRE ENREGISTREMENT
                             DANS LA
-                            BASE DES DONNEES.
-                            -DOIVENT S'ENREGISTRER TOUS LES INFIRMIERS AVEC OU SANS NUMERO DE L'ONIC.
-                            -APRES L'ENREGISTREMENT, CEUX N'AYANT PAS DE NUMEROS DE L'ONIC, DONC LES NON INSCRITS AU
+                            BASE DES DONNEES.<br/>
+                            - DOIVENT S'ENREGISTRER TOUS LES INFIRMIERS AVEC OU SANS NUMERO DE L'ONIC.<br/>
+                            - APRES L'ENREGISTREMENT, CEUX N'AYANT PAS DE NUMEROS DE L'ONIC, DONC LES NON INSCRITS AU
                             TABLEAU DE
                             L'ORDRE RECEVRONT DES INVITATIONS POUR FINALISER LA PROCEDURE D'OBTENTION DES NUMERO ET DES
                             CARTES.
                         </li>
                         <br>
                         <li>
+                            <br/>
                             3. CEUX D'ENTRE VOUS QUI N'ARRIVENT PAS A S'ENREGISTRER, SOLLICITEZ L'ASSISTANCE
                             DE VOS COLLEGUES OU DU PRESIDENT SECTIONNAIRE DE VOTRE ZONE DE SANTE. (SSP).
                         </li>
@@ -953,6 +953,7 @@
                     <p class="text-center">
                         <b>PONYO KABEMBA Benjamin</b> <br>
                         <b> PRESIDENT ONIC-LUBUMBASHI</b>
+                    <h3 class="text-danger" style="text-align: center">L'ENREGISTREMENT PRENDRA FIN LE 31/03/2025</h3>
                     </p>
 
 

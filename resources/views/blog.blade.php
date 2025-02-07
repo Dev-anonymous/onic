@@ -20,7 +20,7 @@
             style="background-image:url({{ asset('ressources/images/background/3.jpg') }});">
             <div class="container">
                 <div class="title-text">
-                    <h1>Blog</h1>
+                    <h1>En Construction</h1>
                     <ul class="title-menu clearfix">
                         <li>
                             <a href="{{ route('home') }}">home &nbsp;/</a>
@@ -118,7 +118,7 @@
             };
 
             removeIfEmpty = false;
-            
+
             function getData(append = true) {
                 if (can) {
                     var _url;
